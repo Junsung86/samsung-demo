@@ -1,0 +1,39 @@
+{
+  "variantName": "carousel-product",
+  "baseBlock": "carousel",
+  "version": "1.0.0",
+  "created": "2026-05-25T20:44:00.000Z",
+  "sourceContext": {
+    "originUrl": "https://www.samsung.com/uk/tvs/smart-tv/highlights/",
+    "originPage": "Samsung Smart TV Highlights product page",
+    "blockPosition": "bottom"
+  },
+  "visualCharacteristics": {
+    "colorScheme": "light",
+    "density": "compact",
+    "purpose": "product-category",
+    "imagePattern": "large"
+  },
+  "contentPattern": {
+    "structure": "image + heading + description + specs + CTA per slide",
+    "buttonCount": 1,
+    "imageCount": 1
+  },
+  "reuseGuidance": {
+    "suitableFor": [
+      "product category showcase pages",
+      "TV series comparison pages",
+      "product lineup overview sections"
+    ],
+    "notSuitableFor": [
+      "image-only galleries",
+      "testimonial carousels",
+      "hero banner rotators"
+    ]
+  },
+  "usage": {
+    "pagesUsing": ["/uk/tvs/smart-tv/highlights/index"],
+    "reuseCount": 1,
+    "lastUsed": "2026-05-25T20:44:00.000Z"
+  }
+}

@@ -1,0 +1,39 @@
+{
+  "variantName": "hero-product",
+  "baseBlock": "hero",
+  "version": "1.0.0",
+  "created": "2026-05-25T20:44:00.000Z",
+  "sourceContext": {
+    "originUrl": "https://www.samsung.com/uk/tvs/smart-tv/highlights/",
+    "originPage": "Samsung Smart TV Highlights product page",
+    "blockPosition": "top"
+  },
+  "visualCharacteristics": {
+    "colorScheme": "dark",
+    "density": "minimal",
+    "purpose": "product-showcase",
+    "imagePattern": "large"
+  },
+  "contentPattern": {
+    "structure": "background image + heading",
+    "buttonCount": 0,
+    "imageCount": 1
+  },
+  "reuseGuidance": {
+    "suitableFor": [
+      "product showcase pages",
+      "category landing pages",
+      "feature highlight pages with dark hero imagery"
+    ],
+    "notSuitableFor": [
+      "blog posts or article pages",
+      "pages with text-heavy heroes",
+      "light-themed hero sections with multiple CTAs"
+    ]
+  },
+  "usage": {
+    "pagesUsing": ["/uk/tvs/smart-tv/highlights/index"],
+    "reuseCount": 1,
+    "lastUsed": "2026-05-25T20:44:00.000Z"
+  }
+}

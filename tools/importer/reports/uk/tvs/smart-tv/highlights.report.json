@@ -1,0 +1,12 @@
+{
+  "status": "success",
+  "url": "https://www.samsung.com/uk/tvs/smart-tv/highlights/",
+  "path": "uk/tvs/smart-tv/highlights",
+  "timestamp": "2026-05-25T21:04:00.185Z",
+  "title": "Why Samsung Smart TV? | Highlights | Samsung UK",
+  "template": "smart-tv-highlights",
+  "blocks": [
+    "hero-product",
+    "carousel-product"
+  ]
+}
