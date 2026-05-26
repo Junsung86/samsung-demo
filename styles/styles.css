@@ -308,3 +308,9 @@ main .section.grey {
   background-color: #f4f4f4;
   padding: 48px 0;
 }
+
+/* Hide metadata blocks */
+.metadata,
+.section-metadata {
+  display: none;
+}
