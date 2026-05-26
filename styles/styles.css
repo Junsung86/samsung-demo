@@ -128,40 +128,22 @@ a:hover {
   text-decoration: underline;
 }
 
-/* Samsung Button Reset for content area */
-main .button-container {
-  display: inline;
-}
-
-main a.button:any-link {
-  background: none;
-  border: none;
-  border-radius: 0;
-  color: var(--link-color);
-  font-size: inherit;
-  font-weight: inherit;
-  padding: 0;
-  margin: 0;
-  text-decoration: underline;
-  white-space: normal;
-}
-
-/* Samsung CTA Buttons */
+/* Samsung CTA Buttons - Black filled pill */
 p.button-wrapper {
-  margin: 16px 0;
+  margin: 24px 0;
 }
 
-a.button.primary:any-link,
-button.button.primary {
+a.button:any-link,
+button.button {
   box-sizing: border-box;
   display: inline-flex;
   align-items: center;
   justify-content: center;
   max-width: 100%;
   margin: 0;
-  border: none;
-  border-radius: 24px;
-  padding: 12px 32px;
+  border: 1px solid transparent;
+  border-radius: 20px;
+  padding: 9px 23px 10px;
   background-color: var(--text-color);
   color: var(--background-color);
   font-size: 14px;
@@ -170,36 +152,32 @@ button.button.primary {
   text-decoration: none;
   cursor: pointer;
   transition: background-color 0.2s;
+  white-space: nowrap;
 }
 
-a.button.primary:hover,
-a.button.primary:focus-visible,
-button.button.primary:hover,
-button.button.primary:focus-visible {
+a.button:hover,
+a.button:focus-visible,
+button.button:hover,
+button.button:focus-visible {
   background-color: #333;
   color: var(--background-color);
   text-decoration: none;
 }
 
+/* Primary = same as default (black filled) */
+a.button.primary:any-link,
+button.button.primary {
+  background-color: var(--text-color);
+  color: var(--background-color);
+  border-color: transparent;
+}
+
+/* Secondary = outlined (transparent bg, black border) */
 a.button.secondary:any-link,
 button.button.secondary {
-  box-sizing: border-box;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  max-width: 100%;
-  margin: 0;
-  border: 1px solid var(--text-color);
-  border-radius: 24px;
-  padding: 12px 32px;
   background-color: transparent;
   color: var(--text-color);
-  font-size: 14px;
-  font-weight: 700;
-  line-height: 1.25;
-  text-decoration: none;
-  cursor: pointer;
-  transition: background-color 0.2s, border-color 0.2s;
+  border-color: var(--text-color);
 }
 
 a.button.secondary:hover,
@@ -207,28 +185,16 @@ a.button.secondary:focus-visible,
 button.button.secondary:hover,
 button.button.secondary:focus-visible {
   background-color: var(--light-color);
+  color: var(--text-color);
   text-decoration: none;
 }
 
+/* Accent = blue filled */
 a.button.accent:any-link,
 button.button.accent {
-  box-sizing: border-box;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  max-width: 100%;
-  margin: 0;
-  border: none;
-  border-radius: 24px;
-  padding: 12px 32px;
   background-color: var(--link-color);
   color: var(--background-color);
-  font-size: 14px;
-  font-weight: 700;
-  line-height: 1.25;
-  text-decoration: none;
-  cursor: pointer;
-  transition: background-color 0.2s;
+  border-color: transparent;
 }
 
 a.button.accent:hover,
@@ -237,6 +203,16 @@ button.button.accent:hover,
 button.button.accent:focus-visible {
   background-color: var(--link-hover-color);
   text-decoration: none;
+}
+
+/* Dark section CTA inversion */
+main .section.dark a.button:any-link {
+  background-color: var(--background-color);
+  color: var(--text-color);
+}
+
+main .section.dark a.button:hover {
+  background-color: #f4f4f4;
 }
 
 /* Images */
@@ -260,16 +236,50 @@ main img {
 /* Sections */
 main > .section {
   margin: 0;
+  text-align: center;
 }
 
 main > .section > div {
   max-width: var(--content-max-width);
   margin: auto;
+  padding: 0;
+}
+
+main > .section h2,
+main > .section h3 {
+  text-align: center;
+  margin-left: auto;
+  margin-right: auto;
+  max-width: 800px;
   padding: 0 20px;
 }
 
+main > .section p {
+  text-align: center;
+  margin-left: auto;
+  margin-right: auto;
+  max-width: 700px;
+  padding: 0 20px;
+}
+
+main > .section picture {
+  display: block;
+  width: 100%;
+}
+
+main > .section picture img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
 @media (width >= 900px) {
-  main > .section > div {
+  main > .section h2,
+  main > .section h3 {
+    padding: 0 80px;
+  }
+
+  main > .section p {
     padding: 0 80px;
   }
 }
