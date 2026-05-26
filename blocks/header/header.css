@@ -309,12 +309,8 @@ header nav .nav-sections ul > li > ul > li {
 
   header nav .nav-sections .default-content-wrapper > ul > li > ul > li {
     padding: 8px 0;
-  }
-
-  header nav .nav-sections .default-content-wrapper > ul > li > ul > li a {
     font-size: 14px;
     font-weight: 400;
-    color: #000;
   }
 }
 
@@ -329,18 +325,14 @@ header nav .nav-tools {
 
 header nav .nav-tools p {
   margin: 0;
-}
-
-header nav .nav-tools a {
   display: flex;
   align-items: center;
   justify-content: center;
   padding: 9px;
   font-size: 0;
-  color: #000;
   transition: opacity 0.2s;
 }
 
-header nav .nav-tools a:hover {
+header nav .nav-tools p:hover {
   opacity: 0.7;
 }
