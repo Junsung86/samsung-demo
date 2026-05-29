@@ -1,4 +1,4 @@
-/* Samsung Footer - Dark theme */
+/* Samsung Footer - from Figma node 27:4 */
 footer {
   background-color: #000;
   color: #fff;
@@ -7,9 +7,9 @@ footer {
 }
 
 footer .footer > div {
-  margin: auto;
   max-width: 1200px;
-  padding: 40px 32px;
+  margin: 0 auto;
+  padding: 0 32px;
 }
 
 footer .footer p {
@@ -26,23 +26,24 @@ footer .footer a:hover {
   color: #fff;
 }
 
-/* Top row: Samsung logo + navigation links */
-footer .footer > div:first-child {
+/* Top row: SAMSUNG logo + nav links */
+footer .footer > div:first-of-type {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  padding-top: 40px;
   padding-bottom: 32px;
   border-bottom: 1px solid #1f2937;
 }
 
-footer .footer > div:first-child p:first-child {
+footer .footer > div:first-of-type .default-content-wrapper p:first-child {
   font-size: 24px;
   font-weight: 700;
   letter-spacing: -1.2px;
   color: #fff;
 }
 
-footer .footer > div:first-child .default-content-wrapper p:last-child a {
+footer .footer > div:first-of-type .default-content-wrapper p:last-child {
   font-size: 12px;
   font-weight: 600;
   letter-spacing: 0.6px;
@@ -50,34 +51,34 @@ footer .footer > div:first-child .default-content-wrapper p:last-child a {
   color: #9ca3af;
 }
 
-/* Bottom row: legal links + social icons */
-footer .footer > div:last-child {
+/* Bottom row: legal + social */
+footer .footer > div:last-of-type {
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding-top: 32px;
+  padding-bottom: 64px;
 }
 
-footer .footer > div:last-child .default-content-wrapper p {
+footer .footer > div:last-of-type .default-content-wrapper p {
   color: #6b7280;
   font-size: 12px;
   line-height: 16px;
 }
 
-@media (width >= 900px) {
-  footer .footer > div {
-    padding: 40px 32px;
-  }
+footer .footer > div:last-of-type .default-content-wrapper p:last-child {
+  display: flex;
+  gap: 16px;
 }
 
 @media (width < 600px) {
-  footer .footer > div:first-child {
+  footer .footer > div:first-of-type {
     flex-direction: column;
     align-items: flex-start;
     gap: 16px;
   }
 
-  footer .footer > div:last-child {
+  footer .footer > div:last-of-type {
     flex-direction: column;
     align-items: flex-start;
     gap: 16px;
