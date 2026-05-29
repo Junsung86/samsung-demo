@@ -1,4 +1,4 @@
-/* Samsung Footer - from Figma node 27:4 */
+/* Samsung Footer - from Figma node 27:3 */
 footer {
   background-color: #000;
   color: #fff;
@@ -13,7 +13,6 @@ footer .footer > div {
 }
 
 footer .footer a {
-  color: #6b7280;
   text-decoration: none;
   transition: color 0.2s;
 }
@@ -22,21 +21,18 @@ footer .footer a:hover {
   color: #fff;
 }
 
-/* Top row: SAMSUNG logo + nav links */
+/* Top row: SAMSUNG logo + SITEMAP | CONTACT US | SAMSUNG.COM */
 footer .footer > div:first-of-type {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding-top: 40px;
+  padding-top: 32px;
   padding-bottom: 32px;
   border-bottom: 1px solid #1f2937;
 }
 
-footer .footer > div:first-of-type .default-content-wrapper p {
-  margin: 0;
-}
-
 footer .footer > div:first-of-type .default-content-wrapper p:first-child {
+  margin: 0;
   font-size: 24px;
   font-weight: 700;
   letter-spacing: -1.2px;
@@ -44,14 +40,19 @@ footer .footer > div:first-of-type .default-content-wrapper p:first-child {
 }
 
 footer .footer > div:first-of-type .default-content-wrapper p:last-child {
+  margin: 0;
   font-size: 12px;
   font-weight: 600;
   letter-spacing: 0.6px;
   text-transform: uppercase;
-  color: #9ca3af;
+  color: #fff;
 }
 
-/* Bottom row: legal + social */
+footer .footer > div:first-of-type .default-content-wrapper p:last-child a {
+  color: #fff;
+}
+
+/* Bottom row: legal links + social icons */
 footer .footer > div:last-of-type {
   display: flex;
   justify-content: space-between;
@@ -62,18 +63,24 @@ footer .footer > div:last-of-type {
 
 footer .footer > div:last-of-type .default-content-wrapper p:first-child {
   margin: 0;
-  color: #6b7280;
+  color: #999;
   font-size: 12px;
   line-height: 16px;
 }
 
+footer .footer > div:last-of-type .default-content-wrapper p:first-child a {
+  color: #999;
+}
+
 footer .footer > div:last-of-type .default-content-wrapper p:last-child {
   margin: 0;
-  color: #6b7280;
-  font-size: 12px;
-  line-height: 16px;
   display: flex;
   gap: 16px;
+}
+
+footer .footer > div:last-of-type .default-content-wrapper p:last-child a {
+  color: #999;
+  font-size: 12px;
 }
 
 @media (width < 600px) {
