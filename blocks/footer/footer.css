@@ -12,6 +12,20 @@ footer .footer > div {
   padding: 40px 32px;
 }
 
+footer .footer p {
+  margin: 0;
+}
+
+footer .footer a {
+  color: #6b7280;
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+footer .footer a:hover {
+  color: #fff;
+}
+
 /* Top row: Samsung logo + navigation links */
 footer .footer > div:first-child {
   display: flex;
@@ -19,10 +33,6 @@ footer .footer > div:first-child {
   align-items: center;
   padding-bottom: 32px;
   border-bottom: 1px solid #1f2937;
-}
-
-footer .footer > div:first-child p {
-  margin: 0;
 }
 
 footer .footer > div:first-child p:first-child {
@@ -38,7 +48,6 @@ footer .footer > div:first-child .default-content-wrapper p:last-child a {
   letter-spacing: 0.6px;
   text-transform: uppercase;
   color: #9ca3af;
-  text-decoration: none;
 }
 
 /* Bottom row: legal links + social icons */
@@ -49,21 +58,10 @@ footer .footer > div:last-child {
   padding-top: 32px;
 }
 
-footer .footer > div:last-child p {
-  margin: 0;
+footer .footer > div:last-child .default-content-wrapper p {
   color: #6b7280;
   font-size: 12px;
   line-height: 16px;
-}
-
-footer .footer a {
-  color: #6b7280;
-  text-decoration: none;
-  transition: color 0.2s;
-}
-
-footer .footer a:hover {
-  color: #fff;
 }
 
 @media (width >= 900px) {
