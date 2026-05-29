@@ -12,10 +12,6 @@ footer .footer > div {
   padding: 0 32px;
 }
 
-footer .footer p {
-  margin: 0;
-}
-
 footer .footer a {
   color: #6b7280;
   text-decoration: none;
@@ -34,6 +30,10 @@ footer .footer > div:first-of-type {
   padding-top: 40px;
   padding-bottom: 32px;
   border-bottom: 1px solid #1f2937;
+}
+
+footer .footer > div:first-of-type .default-content-wrapper p {
+  margin: 0;
 }
 
 footer .footer > div:first-of-type .default-content-wrapper p:first-child {
@@ -60,13 +60,18 @@ footer .footer > div:last-of-type {
   padding-bottom: 64px;
 }
 
-footer .footer > div:last-of-type .default-content-wrapper p {
+footer .footer > div:last-of-type .default-content-wrapper p:first-child {
+  margin: 0;
   color: #6b7280;
   font-size: 12px;
   line-height: 16px;
 }
 
 footer .footer > div:last-of-type .default-content-wrapper p:last-child {
+  margin: 0;
+  color: #6b7280;
+  font-size: 12px;
+  line-height: 16px;
   display: flex;
   gap: 16px;
 }
