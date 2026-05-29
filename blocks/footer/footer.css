@@ -1,46 +1,63 @@
+/* Samsung Footer - Dark theme */
 footer {
   background-color: #000;
   color: #fff;
-  font-size: 14px;
+  font-size: 12px;
+  font-family: var(--body-font-family);
 }
 
 footer .footer > div {
   margin: auto;
-  max-width: 1440px;
-  padding: 48px 20px 24px;
+  max-width: 1200px;
+  padding: 40px 32px;
 }
 
+/* Top row: Samsung logo + navigation links */
 footer .footer > div:first-child {
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: 32px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
   padding-bottom: 32px;
-  border-bottom: 1px solid #333;
+  border-bottom: 1px solid #1f2937;
 }
 
-footer .footer p {
+footer .footer > div:first-child p {
   margin: 0;
 }
 
-footer .footer h4 {
-  font-size: 16px;
+footer .footer > div:first-child p:first-child {
+  font-size: 24px;
   font-weight: 700;
-  margin: 0 0 16px;
+  letter-spacing: -1.2px;
   color: #fff;
 }
 
-footer .footer ul {
-  list-style: none;
-  padding: 0;
-  margin: 0;
+footer .footer > div:first-child .default-content-wrapper p:last-child a {
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.6px;
+  text-transform: uppercase;
+  color: #9ca3af;
+  text-decoration: none;
 }
 
-footer .footer ul li {
-  margin-bottom: 8px;
+/* Bottom row: legal links + social icons */
+footer .footer > div:last-child {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: 32px;
+}
+
+footer .footer > div:last-child p {
+  margin: 0;
+  color: #6b7280;
+  font-size: 12px;
+  line-height: 16px;
 }
 
 footer .footer a {
-  color: #999;
+  color: #6b7280;
   text-decoration: none;
   transition: color 0.2s;
 }
@@ -49,61 +66,22 @@ footer .footer a:hover {
   color: #fff;
 }
 
-/* Social links row */
-footer .footer > div:nth-child(2) {
-  display: flex;
-  align-items: center;
-  justify-content: flex-start;
-  gap: 16px;
-  padding-top: 24px;
-  padding-bottom: 24px;
-  border-bottom: 1px solid #333;
-}
-
-/* Legal row */
-footer .footer > div:last-child {
-  padding-top: 24px;
-  padding-bottom: 24px;
-}
-
-footer .footer > div:last-child p {
-  color: #666;
-  font-size: 12px;
-  line-height: 1.6;
-}
-
-footer .footer > div:last-child .default-content-wrapper a {
-  color: #666;
-  font-size: 12px;
-}
-
-footer .footer > div:last-child .default-content-wrapper a:hover {
-  color: #fff;
-}
-
-@media (width >= 600px) {
-  footer .footer > div:first-child {
-    grid-template-columns: repeat(2, 1fr);
-  }
-}
-
 @media (width >= 900px) {
   footer .footer > div {
-    padding: 48px 80px 24px;
+    padding: 40px 32px;
   }
+}
 
+@media (width < 600px) {
   footer .footer > div:first-child {
-    grid-template-columns: repeat(4, 1fr);
-    gap: 48px;
-  }
-
-  footer .footer > div:nth-child(2) {
-    padding-left: 80px;
-    padding-right: 80px;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 16px;
   }
 
   footer .footer > div:last-child {
-    padding-left: 80px;
-    padding-right: 80px;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 16px;
   }
 }
