@@ -1,4 +1,4 @@
-/* Samsung Footer - from Figma node 27:3 */
+/* Samsung Newsroom Footer - from Figma */
 footer {
   background-color: #000;
   color: #fff;
@@ -7,9 +7,9 @@ footer {
 }
 
 footer .footer > div {
-  max-width: 1200px;
+  max-width: 1440px;
   margin: 0 auto;
-  padding: 0 32px;
+  padding: 0 20px;
 }
 
 footer .footer a {
@@ -19,80 +19,103 @@ footer .footer a {
 
 footer .footer a:hover {
   color: #fff;
+  text-decoration: underline;
 }
 
-/* Top row: SAMSUNG logo + SITEMAP | CONTACT US | SAMSUNG.COM */
+/* Top row: SAMSUNG logo + utility nav */
 footer .footer > div:first-of-type {
   display: flex;
-  justify-content: space-between;
+  flex-direction: column;
   align-items: center;
+  gap: 16px;
   padding-top: 32px;
-  padding-bottom: 32px;
-  border-bottom: 1px solid #1f2937;
+  padding-bottom: 24px;
+  border-bottom: 1px solid #333;
 }
 
 footer .footer > div:first-of-type .default-content-wrapper p:first-child {
   margin: 0;
-  font-size: 24px;
+  font-size: 20px;
   font-weight: 700;
-  letter-spacing: -1.2px;
+  letter-spacing: 0.15em;
   color: #fff;
 }
 
 footer .footer > div:first-of-type .default-content-wrapper p:last-child {
   margin: 0;
+  display: flex;
+  gap: 24px;
   font-size: 12px;
-  font-weight: 600;
-  letter-spacing: 0.6px;
+  font-weight: 700;
+  letter-spacing: -0.02em;
   text-transform: uppercase;
-  color: #fff;
 }
 
 footer .footer > div:first-of-type .default-content-wrapper p:last-child a {
   color: #fff;
 }
 
-/* Bottom row: legal links + social icons */
+/* Bottom row: legal + copyright + socials */
 footer .footer > div:last-of-type {
   display: flex;
-  justify-content: space-between;
+  flex-direction: column;
   align-items: center;
-  padding-top: 32px;
-  padding-bottom: 64px;
+  gap: 24px;
+  padding-top: 24px;
+  padding-bottom: 32px;
 }
 
 footer .footer > div:last-of-type .default-content-wrapper p:first-child {
   margin: 0;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 16px;
   color: #999;
-  font-size: 12px;
-  line-height: 16px;
+  font-size: 11px;
 }
 
 footer .footer > div:last-of-type .default-content-wrapper p:first-child a {
   color: #999;
 }
 
+footer .footer > div:last-of-type .default-content-wrapper p:nth-child(2) {
+  margin: 0;
+  color: #999;
+  font-size: 11px;
+  text-align: center;
+}
+
 footer .footer > div:last-of-type .default-content-wrapper p:last-child {
   margin: 0;
   display: flex;
   gap: 16px;
+  align-items: center;
 }
 
 footer .footer > div:last-of-type .default-content-wrapper p:last-child a {
   color: #999;
-  font-size: 12px;
+  font-size: 11px;
 }
 
-@media (width < 600px) {
+@media (width >= 768px) {
+  footer .footer > div {
+    padding: 0 48px;
+  }
+
   footer .footer > div:first-of-type {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 16px;
+    flex-direction: row;
+    justify-content: space-between;
   }
 
   footer .footer > div:last-of-type {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 16px;
+    flex-direction: row;
+    justify-content: space-between;
+  }
+}
+
+@media (width >= 1024px) {
+  footer .footer > div {
+    padding: 0 80px;
   }
 }
