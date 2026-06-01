@@ -142,10 +142,10 @@ button.button {
   max-width: 100%;
   margin: 0;
   border: 1px solid transparent;
-  border-radius: 20px;
-  padding: 9px 23px 10px;
-  background-color: var(--text-color);
-  color: var(--background-color);
+  border-radius: var(--border-radius);
+  padding: 10px 24px;
+  background-color: var(--secondary-color);
+  color: #fff;
   font-size: 14px;
   font-weight: 700;
   line-height: 1.25;
@@ -159,25 +159,25 @@ a.button:hover,
 a.button:focus-visible,
 button.button:hover,
 button.button:focus-visible {
-  background-color: #333;
-  color: var(--background-color);
+  background-color: var(--link-hover-color);
+  color: #fff;
   text-decoration: none;
 }
 
-/* Primary = same as default (black filled) */
+/* Primary = Samsung Blue filled */
 a.button.primary:any-link,
 button.button.primary {
-  background-color: var(--text-color);
-  color: var(--background-color);
+  background-color: var(--secondary-color);
+  color: #fff;
   border-color: transparent;
 }
 
-/* Secondary = outlined (transparent bg, black border) */
+/* Secondary = outlined (transparent bg, dark grey border) */
 a.button.secondary:any-link,
 button.button.secondary {
   background-color: transparent;
-  color: var(--text-color);
-  border-color: var(--text-color);
+  color: var(--on-surface);
+  border-color: var(--on-surface);
 }
 
 a.button.secondary:hover,
@@ -185,15 +185,15 @@ a.button.secondary:focus-visible,
 button.button.secondary:hover,
 button.button.secondary:focus-visible {
   background-color: var(--light-color);
-  color: var(--text-color);
+  color: var(--on-surface);
   text-decoration: none;
 }
 
-/* Accent = blue filled */
+/* Accent = Samsung Blue filled (same as primary) */
 a.button.accent:any-link,
 button.button.accent {
-  background-color: var(--link-color);
-  color: var(--background-color);
+  background-color: var(--secondary-color);
+  color: #fff;
   border-color: transparent;
 }
 
