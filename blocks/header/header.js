@@ -60,7 +60,7 @@ function focusNavSection() {
  */
 function toggleAllNavSections(sections, expanded = false) {
   if (!sections) return;
-  sections.querySelectorAll('.nav-sections .default-content-wrapper > ul > li').forEach((section) => {
+  sections.querySelectorAll(':scope .default-content-wrapper > ul > li').forEach((section) => {
     section.setAttribute('aria-expanded', expanded);
   });
 }
@@ -122,20 +122,25 @@ export default async function decorate(block) {
   block.textContent = '';
   const nav = document.createElement('nav');
   nav.id = 'nav';
-  while (fragment.firstElementChild) nav.append(fragment.firstElementChild);
+  [...fragment.children].forEach((child) => {
+    if (child.tagName === 'DIV') nav.append(child);
+  });
 
   const classes = ['brand', 'sections', 'tools'];
-  const sections = [...nav.children].filter((child) => child.tagName === 'DIV');
+  const sections = [...nav.children];
   classes.forEach((c, i) => {
     const section = sections[i];
     if (section) section.classList.add(`nav-${c}`);
   });
 
   const navBrand = nav.querySelector('.nav-brand');
-  const brandLink = navBrand.querySelector('.button');
-  if (brandLink) {
-    brandLink.className = '';
-    brandLink.closest('.button-container').className = '';
+  if (navBrand) {
+    const brandLink = navBrand.querySelector('a');
+    if (brandLink) {
+      brandLink.className = '';
+      const wrapper = brandLink.closest('.button-container');
+      if (wrapper) wrapper.className = '';
+    }
   }
 
   const navSections = nav.querySelector('.nav-sections');
