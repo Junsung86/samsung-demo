@@ -71,7 +71,14 @@ export default async function decorate(block) {
     li.classList.add('nav-drop');
     li.setAttribute('aria-expanded', 'false');
 
-    const trigger = li.querySelector(':scope > a');
+    // The trigger link is a direct child <a> (local aem up) or wrapped in a
+    // <p> (DA/EDS markup conversion). Match both so the dropdown toggle works
+    // on production where the label sits inside <li> > <p> > <a>.
+    const trigger = li.querySelector(':scope > a, :scope > p > a');
+    // Remove the whole <p> wrapper on DA/EDS; otherwise just the bare <a>.
+    const triggerHost = trigger && trigger.parentElement.tagName === 'P'
+      ? trigger.parentElement
+      : trigger;
     const label = trigger ? trigger.textContent.trim() : '';
     const triggerBtn = document.createElement('button');
     triggerBtn.type = 'button';
@@ -79,7 +86,7 @@ export default async function decorate(block) {
     triggerBtn.setAttribute('aria-haspopup', 'true');
     triggerBtn.setAttribute('aria-expanded', 'false');
     li.insertBefore(triggerBtn, li.firstChild);
-    if (trigger) trigger.remove();
+    if (triggerHost) triggerHost.remove();
 
     triggerBtn.addEventListener('click', (e) => {
       e.stopPropagation();
@@ -89,9 +96,9 @@ export default async function decorate(block) {
       triggerBtn.setAttribute('aria-expanded', isOpen ? 'false' : 'true');
     });
 
-    // Group labels inside the panel: <li> without an <a> are section headings.
+    // Group labels inside the panel: <li> without a link are section headings.
     panel.querySelectorAll(':scope > li').forEach((sub) => {
-      if (!sub.querySelector(':scope > a')) sub.classList.add('nav-group-label');
+      if (!sub.querySelector(':scope > a, :scope > p > a')) sub.classList.add('nav-group-label');
     });
   });
 
