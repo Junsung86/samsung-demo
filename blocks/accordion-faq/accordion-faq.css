@@ -1,0 +1,87 @@
+/*
+ * accordion-faq block
+ * Visual design migrated from semiconductor.samsung.com/kr/dram/hbm
+ * Source structure: .accordion-list (item) > button.accordion-trigger + .accordion-panel
+ * EDS decorated structure: details.accordion-faq-item > summary.accordion-faq-item-label + div.accordion-faq-item-body
+ */
+
+.accordion-faq {
+  font-family: "Samsung One KR", "Samsung One", var(--body-font-family);
+  color: #000;
+}
+
+/* --- Accordion item (row + divider) --- */
+.accordion-faq .accordion-faq-item {
+  border-bottom: 1px solid #ddd;
+}
+
+/* --- Question / clickable header row --- */
+.accordion-faq .accordion-faq-item-label {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  min-height: 32px;
+  padding: 32px 40px 32px 0;
+  cursor: pointer;
+  list-style: none;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 19.6px;
+  color: #000;
+}
+
+.accordion-faq .accordion-faq-item-label::-webkit-details-marker {
+  display: none;
+}
+
+.accordion-faq .accordion-faq-item-label p {
+  margin: 0;
+  max-width: none;
+  padding: 0;
+  text-align: left;
+}
+
+/* --- Expand/collapse chevron indicator (28x28 region, down chevron) --- */
+.accordion-faq .accordion-faq-item-label::after {
+  content: "";
+  position: absolute;
+  right: 4px;
+  top: 50%;
+  width: 11px;
+  height: 11px;
+  border: solid #000;
+  border-width: 0 2px 2px 0;
+  transform: translateY(-75%) rotate(45deg);
+  transition: transform 0.2s ease;
+}
+
+/* open state: chevron points up */
+.accordion-faq .accordion-faq-item[open] .accordion-faq-item-label::after {
+  transform: translateY(-25%) rotate(-135deg);
+}
+
+/* --- Answer body --- */
+.accordion-faq .accordion-faq-item-body {
+  padding: 0 0 32px;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 19.6px;
+  color: #000;
+}
+
+.accordion-faq .accordion-faq-item-body p {
+  margin: 0;
+  max-width: none;
+  padding: 0;
+  text-align: left;
+  font-size: 14px;
+  line-height: 19.6px;
+  color: #000;
+}
+
+/* native details collapses body automatically; remove default top spacing when closed handled by details */
+.accordion-faq .accordion-faq-item:not([open]) .accordion-faq-item-body {
+  display: none;
+}

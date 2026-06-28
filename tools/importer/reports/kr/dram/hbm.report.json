@@ -1,0 +1,17 @@
+{
+  "status": "success",
+  "url": "https://semiconductor.samsung.com/kr/dram/hbm/",
+  "path": "kr/dram/hbm",
+  "timestamp": "2026-06-28T16:05:08.288Z",
+  "title": "HBM | DRAM | 삼성반도체",
+  "template": "hbm-overview",
+  "blocks": [
+    "hero-product",
+    "columns-spec",
+    "columns-spec",
+    "columns-spec",
+    "accordion-faq",
+    "cards-content",
+    "cards-content"
+  ]
+}

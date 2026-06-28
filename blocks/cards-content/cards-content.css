@@ -1,0 +1,234 @@
+/* Block: cards-content
+ * Visual design migrated from semiconductor.samsung.com/kr/dram/hbm
+ * Two instances share the same decorated DOM (ul > li > .card-image + .card-body):
+ *   - "Related content" (.CO31): eyebrow + linked title + hashtag chips, image-on-top
+ *   - "Applications" (.CO08): portrait image with title/description overlaid
+ * Instances are distinguished via :has() on the body's first child
+ * (p = related eyebrow, h3 = applications title).
+ *
+ * The two instances are mutually exclusive (an <li> matches one :has() branch
+ * or the other, never both), so descending-specificity ordering is irrelevant.
+ */
+/* stylelint-disable no-descending-specificity */
+
+.cards-content {
+  font-family: "Samsung One KR", "Samsung One", sans-serif;
+}
+
+/* ---- Grid container (both instances) ---- */
+.cards-content > ul {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 40px 24px;
+  list-style: none;
+  margin: 24px auto 0;
+  padding: 0;
+  text-align: left;
+}
+
+.cards-content > ul > li {
+  flex: 1 1 100%;
+  min-width: 0;
+}
+
+.cards-content .cards-content-card-image {
+  line-height: 0;
+}
+
+.cards-content .cards-content-card-image picture {
+  display: block;
+  width: 100%;
+}
+
+.cards-content .cards-content-card-image img {
+  display: block;
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+}
+
+.cards-content .cards-content-card-body {
+  text-align: left;
+}
+
+/* h3 / p reset inside cards (overrides centered section defaults) */
+.cards-content .cards-content-card-body h3,
+.cards-content .cards-content-card-body p {
+  text-align: left;
+  max-width: none;
+  padding: 0;
+  margin: 0;
+}
+
+/* =====================================================================
+   Instance: Related content  (body starts with the category <p> eyebrow)
+   ===================================================================== */
+.cards-content > ul > li:has(> .cards-content-card-body > p:first-child) .cards-content-card-image img {
+  aspect-ratio: 4 / 3;
+  border-radius: 20px;
+  background-color: #f0f0f0;
+}
+
+.cards-content > ul > li:has(> .cards-content-card-body > p:first-child) .cards-content-card-body {
+  padding-top: 20px;
+}
+
+/* category eyebrow */
+.cards-content > ul > li:has(> .cards-content-card-body > p:first-child) .cards-content-card-body > p:first-child {
+  margin: 0 0 8px;
+  color: rgb(117 117 117);
+  font-size: 10px;
+  font-weight: 700;
+  line-height: 16px;
+}
+
+/* linked title */
+.cards-content > ul > li:has(> .cards-content-card-body > p:first-child) .cards-content-card-body h3 {
+  margin: 0 0 16px;
+  font-size: 18px;
+  font-weight: 700;
+  line-height: 25px;
+}
+
+.cards-content > ul > li:has(> .cards-content-card-body > p:first-child) .cards-content-card-body h3 a {
+  color: rgb(0 0 0);
+}
+
+/* hashtag chips row (last paragraph with multiple links) */
+.cards-content > ul > li:has(> .cards-content-card-body > p:first-child) .cards-content-card-body > p:last-child {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 0;
+}
+
+.cards-content > ul > li:has(> .cards-content-card-body > p:first-child) .cards-content-card-body > p:last-child a {
+  display: inline-flex;
+  align-items: center;
+  height: 28px;
+  padding: 0 16px;
+  border: 1px solid rgb(0 0 0 / 10%);
+  border-radius: 15px;
+  background-color: rgb(255 255 255 / 30%);
+  color: rgb(0 0 0);
+  font-size: 10px;
+  font-weight: 700;
+  line-height: 28px;
+  white-space: nowrap;
+}
+
+.cards-content > ul > li:has(> .cards-content-card-body > p:first-child) .cards-content-card-body > p:last-child a:hover {
+  background-color: rgb(0 0 0 / 5%);
+  text-decoration: none;
+}
+
+/* =====================================================================
+   Instance: Applications  (body starts with the title <h3>)
+   Portrait image with title (top) + description (bottom) overlaid in white
+   ===================================================================== */
+.cards-content > ul > li:has(> .cards-content-card-body > h3:first-child) {
+  position: relative;
+  overflow: hidden;
+  border-radius: 30px;
+}
+
+.cards-content > ul > li:has(> .cards-content-card-body > h3:first-child) .cards-content-card-image,
+.cards-content > ul > li:has(> .cards-content-card-body > h3:first-child) .cards-content-card-image img {
+  aspect-ratio: 330 / 430;
+  border-radius: 30px;
+}
+
+.cards-content > ul > li:has(> .cards-content-card-body > h3:first-child) .cards-content-card-body {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 32px;
+  background: linear-gradient(180deg, rgb(0 0 0 / 30%) 0%, rgb(0 0 0 / 0%) 35%, rgb(0 0 0 / 0%) 65%, rgb(0 0 0 / 40%) 100%);
+  color: #fff;
+}
+
+.cards-content > ul > li:has(> .cards-content-card-body > h3:first-child) .cards-content-card-body h3 {
+  margin: 0;
+  color: #fff;
+  font-size: 36px;
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+.cards-content > ul > li:has(> .cards-content-card-body > h3:first-child) .cards-content-card-body p {
+  margin: 0;
+  color: #fff;
+  font-size: 18px;
+  font-weight: 700;
+  line-height: 1.4;
+}
+
+/* the redundant CTA link duplicates the title text -> make it cover the card */
+.cards-content > ul > li:has(> .cards-content-card-body > h3:first-child) .cards-content-card-body p:last-child {
+  position: absolute;
+  inset: 0;
+  font-size: 0;
+}
+
+.cards-content > ul > li:has(> .cards-content-card-body > h3:first-child) .cards-content-card-body p:last-child a {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+/* =====================================================================
+   Tablet / Desktop layout
+   ===================================================================== */
+@media (width >= 900px) {
+  /* related content: 3 columns */
+  .cards-content > ul > li:has(> .cards-content-card-body > p:first-child) {
+    flex: 0 0 calc((100% - 48px) / 3);
+  }
+
+  /* applications: single portrait card, fixed width, centered */
+  .cards-content > ul:has(> li > .cards-content-card-body > h3:first-child) {
+    justify-content: center;
+  }
+
+  .cards-content > ul > li:has(> .cards-content-card-body > h3:first-child) {
+    flex: 0 0 314px;
+    max-width: 314px;
+  }
+}
+
+/* =====================================================================
+   "더 보기" (load more) — related-content shows 3 cards, reveals rest on click
+   ===================================================================== */
+.cards-content .cards-content-hidden {
+  display: none;
+}
+
+.cards-content-more {
+  display: flex;
+  justify-content: center;
+  margin-top: 40px;
+}
+
+.cards-content-more-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 48px;
+  padding: 12px 32px;
+  border: 1px solid #000;
+  border-radius: 100px;
+  background-color: #fff;
+  color: #000;
+  font-family: "Samsung One KR", "Samsung One", sans-serif;
+  font-size: 15px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background-color 0.2s, color 0.2s;
+}
+
+.cards-content-more-btn:hover {
+  background-color: #000;
+  color: #fff;
+}

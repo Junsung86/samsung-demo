@@ -1,23 +1,23 @@
 :root {
-  /* Precision Editorial - Colors */
-  --background-color: #fbf9f8;
-  --text-color: #1b1c1c;
-  --link-color: #215db1;
-  --link-hover-color: #004591;
-  --light-color: #f0eded;
-  --dark-color: #303030;
-  --surface-color: #fbf9f8;
-  --on-surface: #1b1c1c;
-  --on-surface-variant: #444748;
-  --outline-color: #747878;
-  --outline-variant: #c4c7c8;
-  --primary-color: #5d5f5f;
-  --secondary-color: #215db1;
+  /* Samsung Semiconductor - Colors */
+  --background-color: #fff;
+  --text-color: #000;
+  --link-color: #2189ff;
+  --link-hover-color: #1c6fd0;
+  --light-color: #f8f8f8;
+  --dark-color: #000;
+  --surface-color: #fff;
+  --on-surface: #000;
+  --on-surface-variant: #555;
+  --outline-color: #767676;
+  --outline-variant: #ddd;
+  --primary-color: #000;
+  --secondary-color: #2189ff;
   --error-color: #ba1a1a;
 
-  /* Typography - Hanken Grotesk */
-  --body-font-family: "Hanken Grotesk", sans-serif;
-  --heading-font-family: "Hanken Grotesk", sans-serif;
+  /* Typography - Samsung One KR */
+  --body-font-family: "Samsung One KR", "Samsung One", sans-serif;
+  --heading-font-family: "Samsung One KR", "Samsung One", sans-serif;
 
   /* Heading Sizes - Desktop */
   --heading-font-size-xxl: 48px;

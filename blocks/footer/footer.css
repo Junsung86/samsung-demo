@@ -1,121 +1,119 @@
-/* Samsung Newsroom Footer - from Figma */
+/* Samsung Semiconductor footer - white bg, grey text */
 footer {
-  background-color: #000;
-  color: #fff;
-  font-size: 12px;
+  background-color: #fff;
+  color: #555;
+  font-size: 13px;
   font-family: var(--body-font-family);
+  border-top: 1px solid #e5e5e5;
 }
 
-footer .footer > div {
-  max-width: 1440px;
+footer .footer-inner {
+  max-width: 1600px;
   margin: 0 auto;
-  padding: 0 20px;
+  padding: 40px 24px;
 }
 
-footer .footer a {
+footer h2 {
+  font-size: 13px;
+  font-weight: 700;
+  color: #000;
+  margin: 0 0 12px;
+}
+
+footer ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+footer a {
+  color: #555;
   text-decoration: none;
-  transition: color 0.2s;
 }
 
-footer .footer a:hover {
-  color: #fff;
+footer a:hover {
+  color: #000;
   text-decoration: underline;
 }
 
-/* Top row: SAMSUNG logo + utility nav */
-footer .footer > div:first-of-type {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 16px;
-  padding-top: 32px;
-  padding-bottom: 24px;
-  border-bottom: 1px solid #333;
-}
-
-footer .footer > div:first-of-type .default-content-wrapper p:first-child {
-  margin: 0;
-  font-size: 20px;
-  font-weight: 700;
-  letter-spacing: 0.15em;
-  color: #fff;
-}
-
-footer .footer > div:first-of-type .default-content-wrapper p:last-child {
-  margin: 0;
-  display: flex;
-  gap: 24px;
-  font-size: 12px;
-  font-weight: 700;
-  letter-spacing: -0.02em;
-  text-transform: uppercase;
-}
-
-footer .footer > div:first-of-type .default-content-wrapper p:last-child a {
-  color: #fff;
-}
-
-/* Bottom row: legal + copyright + socials */
-footer .footer > div:last-of-type {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 24px;
-  padding-top: 24px;
-  padding-bottom: 32px;
-}
-
-footer .footer > div:last-of-type .default-content-wrapper p:first-child {
-  margin: 0;
+/* --- Top region: social + newsroom + WA mark --- */
+footer .footer-top {
   display: flex;
   flex-wrap: wrap;
-  justify-content: center;
-  gap: 16px;
-  color: #999;
-  font-size: 11px;
+  gap: 48px;
+  align-items: flex-start;
+  padding-bottom: 32px;
+  border-bottom: 1px solid #e5e5e5;
 }
 
-footer .footer > div:last-of-type .default-content-wrapper p:first-child a {
-  color: #999;
-}
-
-footer .footer > div:last-of-type .default-content-wrapper p:nth-child(2) {
-  margin: 0;
-  color: #999;
-  font-size: 11px;
-  text-align: center;
-}
-
-footer .footer > div:last-of-type .default-content-wrapper p:last-child {
-  margin: 0;
+footer .footer-top ul {
   display: flex;
-  gap: 16px;
+  flex-wrap: wrap;
+  gap: 8px 20px;
+  margin-bottom: 16px;
+}
+
+footer .footer-top p {
+  margin: 0;
+}
+
+footer .footer-top img {
+  height: 48px;
+  width: auto;
+}
+
+/* --- Bottom region: language + legal + copyright --- */
+footer .footer-bottom {
+  display: flex;
+  flex-wrap: wrap;
   align-items: center;
+  gap: 12px 24px;
+  padding-top: 24px;
 }
 
-footer .footer > div:last-of-type .default-content-wrapper p:last-child a {
-  color: #999;
-  font-size: 11px;
+footer .footer-bottom p {
+  margin: 0;
 }
 
-@media (width >= 768px) {
-  footer .footer > div {
-    padding: 0 48px;
-  }
-
-  footer .footer > div:first-of-type {
-    flex-direction: row;
-    justify-content: space-between;
-  }
-
-  footer .footer > div:last-of-type {
-    flex-direction: row;
-    justify-content: space-between;
-  }
+footer .footer-bottom > p:first-child a {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-weight: 700;
+  color: #000;
 }
 
-@media (width >= 1024px) {
-  footer .footer > div {
-    padding: 0 80px;
+footer .footer-bottom img {
+  width: 18px;
+  height: 18px;
+}
+
+footer .footer-bottom ul {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 20px;
+}
+
+footer .footer-bottom > p:last-child {
+  width: 100%;
+  color: #888;
+  font-size: 12px;
+  margin-top: 8px;
+}
+
+/* ===== Mobile ===== */
+@media (width <= 768px) {
+  footer .footer-inner {
+    padding: 28px 20px;
+  }
+
+  footer .footer-top {
+    flex-direction: column;
+    gap: 24px;
+  }
+
+  footer .footer-bottom {
+    flex-direction: column;
+    align-items: flex-start;
   }
 }

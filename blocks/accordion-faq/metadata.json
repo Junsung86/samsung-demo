@@ -1,0 +1,39 @@
+{
+  "variantName": "accordion-faq",
+  "baseBlock": "accordion",
+  "version": "1.0.0",
+  "created": "2026-06-28T13:04:00.000Z",
+  "sourceContext": {
+    "originUrl": "https://semiconductor.samsung.com/kr/dram/hbm/",
+    "originPage": "Samsung HBM product overview page",
+    "blockPosition": "middle"
+  },
+  "visualCharacteristics": {
+    "colorScheme": "light",
+    "density": "compact",
+    "purpose": "faq",
+    "imagePattern": "noimg"
+  },
+  "contentPattern": {
+    "structure": "question (summary) + answer (body) per row",
+    "buttonCount": 0,
+    "imageCount": 0
+  },
+  "reuseGuidance": {
+    "suitableFor": [
+      "FAQ sections",
+      "question-and-answer content",
+      "expandable/collapsible information rows"
+    ],
+    "notSuitableFor": [
+      "image card grids",
+      "side-by-side comparison layouts",
+      "hero banners"
+    ]
+  },
+  "usage": {
+    "pagesUsing": ["/kr/dram/hbm/index"],
+    "reuseCount": 1,
+    "lastUsed": "2026-06-28T13:04:00.000Z"
+  }
+}

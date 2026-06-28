@@ -32,8 +32,8 @@
     ]
   },
   "usage": {
-    "pagesUsing": ["/uk/tvs/smart-tv/highlights/index"],
-    "reuseCount": 1,
-    "lastUsed": "2026-05-25T20:44:00.000Z"
+    "pagesUsing": ["/uk/tvs/smart-tv/highlights/index", "/kr/dram/hbm/index"],
+    "reuseCount": 2,
+    "lastUsed": "2026-06-28T13:04:00.000Z"
   }
 }

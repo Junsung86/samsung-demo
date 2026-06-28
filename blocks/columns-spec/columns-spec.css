@@ -1,0 +1,295 @@
+/* columns-spec block -- Samsung HBM "Feature spec" two-column + spec grid layout.
+   Values extracted from semiconductor.samsung.com/kr/dram/hbm computed styles. */
+/* stylelint-disable no-descending-specificity */
+
+/* Intro text block (default content sharing the section): full-width, centered,
+   large lead + description. Source: 36px lead / 18px description, full-width centered.
+   Overrides global .default-content-wrapper (1200px max-width + side margins) which
+   made the intro look narrow. */
+main .columns-spec-container > .default-content-wrapper {
+  max-width: none;
+  margin: 0 auto;
+  padding: 0 24px;
+  text-align: center;
+  font-family: "Samsung One KR", "Samsung One", sans-serif;
+}
+
+main .columns-spec-container > .default-content-wrapper p {
+  max-width: none;
+  margin: 0 auto;
+  text-align: center;
+  color: #000;
+}
+
+/* Lead line (the bold first paragraph) */
+main .columns-spec-container > .default-content-wrapper p:first-child {
+  margin-bottom: 12px;
+}
+
+main .columns-spec-container > .default-content-wrapper p:first-child strong {
+  font-size: 36px;
+  font-weight: 400;
+  line-height: 44px;
+}
+
+/* Description paragraph */
+main .columns-spec-container > .default-content-wrapper p:not(:first-child) {
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 24px;
+}
+
+@media (width <= 768px) {
+  main .columns-spec-container > .default-content-wrapper p:first-child strong {
+    font-size: 24px;
+    line-height: 32px;
+  }
+
+  main .columns-spec-container > .default-content-wrapper p:not(:first-child) {
+    font-size: 16px;
+    line-height: 22px;
+  }
+}
+
+.columns-spec {
+  --columns-spec-font: "Samsung One KR", "Samsung One", sans-serif;
+
+  background-color: #fff;
+  color: #000;
+  text-align: left;
+  margin: 48px auto;
+  padding: 0;
+  font-family: var(--columns-spec-font);
+}
+
+/* Each block is a single row with a text cell + image cell.
+   Base (mobile): stacked. */
+.columns-spec > div {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+/* Text cell holds heading, description, spec list, CTA */
+.columns-spec > div > div {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+/* Heading -- override global section centering (main > .section h2 = 0,1,2) */
+main .columns-spec h2 {
+  margin: 0 0 24px;
+  font-family: var(--columns-spec-font);
+  font-size: 32px;
+  font-weight: 700;
+  line-height: 1.2;
+  color: #000;
+  text-align: left;
+  max-width: none;
+  padding: 0;
+}
+
+/* Description paragraph (first p in text cell) -- override global centering */
+main .columns-spec > div > div > p {
+  margin: 0;
+  font-family: var(--columns-spec-font);
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 1.4;
+  color: #000;
+  text-align: left;
+  max-width: none;
+  padding: 0;
+}
+
+/* Image */
+.columns-spec img {
+  width: 100%;
+  height: auto;
+  border-radius: 20px;
+  object-fit: cover;
+}
+
+.columns-spec > div > .columns-spec-img-col {
+  order: -1;
+}
+
+.columns-spec > div > .columns-spec-img-col img {
+  display: block;
+}
+
+/* Spec list -- card grid */
+.columns-spec ul {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 16px;
+  margin: 16px 0;
+  padding: 0;
+  list-style: none;
+}
+
+.columns-spec ul > li {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 20px;
+  margin: 0;
+  padding: 16px;
+  background-color: #f8f8f8;
+  border-radius: 20px;
+  font-family: var(--columns-spec-font);
+}
+
+/* Spec icon */
+.columns-spec ul > li .columns-spec-item-icon,
+.columns-spec ul > li .columns-spec-item-icon img {
+  flex: 0 0 64px;
+  width: 64px;
+  height: 64px;
+  object-fit: contain;
+}
+
+.columns-spec-item-text {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  min-width: 0;
+}
+
+/* Spec label (Capacity, Speed ...) -- small grey */
+.columns-spec-item-name {
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 16px;
+  color: #1c1c1c;
+}
+
+/* Spec value -- bold */
+.columns-spec-item-value {
+  font-size: 18px;
+  font-weight: 700;
+  line-height: 24px;
+  color: #000;
+}
+
+/* CTA link styled as black pill button (last paragraph holding the link) */
+main .columns-spec > div > div > p:last-child {
+  margin: 0;
+  padding: 0;
+  text-align: left;
+  max-width: none;
+}
+
+.columns-spec > div > div > p:last-child a {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  min-height: 40px;
+  padding: 9px 19px;
+  border: 1px solid #000;
+  border-radius: 100px;
+  background-color: #000;
+  color: #fff;
+  font-family: var(--columns-spec-font);
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 20px;
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.columns-spec > div > div > p:last-child a:hover,
+.columns-spec > div > div > p:last-child a:focus-visible {
+  background-color: #333;
+  border-color: #333;
+  color: #fff;
+  text-decoration: none;
+}
+
+@media (width >= 900px) {
+  /* Promote the row to a grid so the text cell's children (heading,
+     description, list, CTA) and the image can be placed precisely:
+     - heading + description: top-left (col 1)
+     - image: top-right (col 2)
+     - spec list + CTA: full width below (span both cols) */
+  .columns-spec > div {
+    display: grid;
+    grid-template-columns: 1fr 370px;
+    grid-template-rows: auto 1fr auto auto;
+    gap: 40px 64px;
+    align-items: start;
+  }
+
+  /* Dissolve the text cell so its children become grid items of the row */
+  .columns-spec > div > div:not(.columns-spec-img-col) {
+    display: contents;
+  }
+
+  main .columns-spec h2 {
+    grid-column: 1;
+    grid-row: 1;
+    align-self: start;
+    font-size: 48px;
+    line-height: 58px;
+    margin-bottom: 0;
+  }
+
+  /* Description directly under the heading (row 2, top-aligned) */
+  main .columns-spec > div > div > p:not(:last-child) {
+    grid-column: 1;
+    grid-row: 2;
+    align-self: start;
+  }
+
+  /* Image: top-right, spanning the heading + description rows */
+  .columns-spec > div > .columns-spec-img-col {
+    grid-column: 2;
+    grid-row: 1 / 3;
+    order: 0;
+    width: 370px;
+    justify-self: end;
+  }
+
+  /* Spec grid spans full width below */
+  .columns-spec ul {
+    grid-column: 1 / -1;
+    grid-row: 3;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+    margin: 0;
+  }
+
+  /* CTA spans full width at the bottom, left-aligned */
+  main .columns-spec > div > div > p:last-child {
+    grid-column: 1 / -1;
+    grid-row: 4;
+  }
+
+  .columns-spec > div > div > p:last-child a {
+    align-self: start;
+  }
+}
+
+/* Reversed instances (e.g. HBM3E): image on the LEFT */
+@media (width >= 900px) {
+  .columns-spec-reverse > div {
+    grid-template-columns: 370px 1fr;
+  }
+
+  main .columns-spec-reverse h2,
+  main .columns-spec-reverse > div > div > p:not(:last-child) {
+    grid-column: 2;
+  }
+
+  .columns-spec-reverse > div > .columns-spec-img-col {
+    grid-column: 1;
+    justify-self: start;
+  }
+
+  main .columns-spec-reverse ul,
+  main .columns-spec-reverse > div > div > p:last-child {
+    grid-column: 1 / -1;
+  }
+}

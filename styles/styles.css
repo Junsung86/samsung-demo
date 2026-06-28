@@ -239,6 +239,59 @@ main > .section {
   text-align: center;
 }
 
+/* Section-to-section spacing — source spaces content sections generously
+   (~120px desktop). Apply top margin to sections after the first so blocks
+   are not flush against each other. */
+main > .section + .section {
+  margin-top: 120px;
+}
+
+@media (width <= 768px) {
+  main > .section + .section {
+    margin-top: 64px;
+  }
+}
+
+/* Breadcrumb (홈 / DRAM / HBM) — preserved from source, rendered near the
+   bottom of the page (above the footer). It is the only <ol> in main, so
+   target it directly. Styled as an inline separated trail. */
+/* stylelint-disable no-descending-specificity */
+main .default-content-wrapper > ol {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+  list-style: none;
+  margin: 24px auto;
+  padding: 0 24px;
+  max-width: var(--content-max-width);
+  font-size: 13px;
+  color: #767676;
+}
+
+main .default-content-wrapper > ol li {
+  display: flex;
+  align-items: center;
+  margin: 0;
+}
+
+main .default-content-wrapper > ol li:not(:last-child)::after {
+  content: "/";
+  margin-left: 8px;
+  color: #c5c5c5;
+}
+
+main .default-content-wrapper > ol a {
+  color: #767676;
+  text-decoration: none;
+}
+
+main .default-content-wrapper > ol a:hover {
+  color: #000;
+  text-decoration: underline;
+}
+/* stylelint-enable no-descending-specificity */
+
 main > .section > div {
   max-width: var(--content-max-width);
   margin: auto;
@@ -262,6 +315,30 @@ main > .section p {
   padding: 0 20px;
 }
 
+/* Legal disclaimer (the "* 본 페이지의 내용은..." block above the footer). The
+   source renders it left-aligned, small (12px), grey, and spanning the full
+   content width — not centered like other default content. Target the wrapper
+   that holds the global-network contact link so only the disclaimer is hit. */
+/* stylelint-disable no-descending-specificity */
+main .default-content-wrapper:has(> p a[href*="global-network"]) {
+  max-width: var(--content-max-width);
+  margin: 0 auto;
+  padding: 0 20px;
+  text-align: left;
+}
+
+main .default-content-wrapper:has(> p a[href*="global-network"]) p {
+  max-width: none;
+  margin-left: 0;
+  margin-right: 0;
+  padding: 0;
+  text-align: left;
+  font-size: 12px;
+  line-height: 16px;
+  color: #757575;
+}
+/* stylelint-enable no-descending-specificity */
+
 main > .section picture {
   display: block;
   width: 100%;
@@ -282,6 +359,10 @@ main > .section picture img {
   main > .section p {
     padding: 0 80px;
   }
+
+  main .default-content-wrapper:has(> p a[href*="global-network"]) {
+    padding: 0 80px;
+  }
 }
 
 /* Section Variants */
@@ -290,6 +371,7 @@ main .section.dark {
   color: #fff;
 }
 
+/* stylelint-disable no-descending-specificity */
 main .section.dark h1,
 main .section.dark h2,
 main .section.dark h3,
@@ -297,6 +379,7 @@ main .section.dark h4,
 main .section.dark p {
   color: #fff;
 }
+/* stylelint-enable no-descending-specificity */
 
 main .section.light,
 main .section.highlight {

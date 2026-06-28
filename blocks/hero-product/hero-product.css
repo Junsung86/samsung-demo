@@ -1,49 +1,55 @@
-/* Full-width wrapper override */
+/* Block: hero-product -- visual design migrated from
+   https://semiconductor.samsung.com/kr/dram/hbm/ (.st-semi-hero-carousel)
+
+   Source design: full-bleed dark hero. The product image sits on a black
+   background with the large white heading overlaid in the upper portion.
+   Values (font sizes, line-heights, heights, spacing) extracted from the
+   source computed styles at 375px (mobile) and 1440px (desktop). */
+
+/* Full-width wrapper override (EDS wraps sections at max-width) */
 .hero-product-wrapper {
   max-width: 100% !important;
   padding: 0 !important;
 }
 
-/* Block container - mobile first */
+/* Block container - mobile first.
+   Source mobile hero = 375 x 540 (black bg, image + overlaid heading). */
 .hero-product {
   position: relative;
-  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   margin: 0;
   padding: 0;
-  min-height: 380px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background-color: rgb(255 255 255);
+  min-height: 540px;
+  overflow: hidden;
+  background-color: #000;
 }
 
-/* Row 1: Image container - absolute positioned behind content */
+/* Row 1: product image - fills the whole hero as the dark backdrop */
 .hero-product > div:first-child {
   position: absolute;
   inset: 0;
   z-index: 0;
-}
-
-/* Row 2: Content overlay - centered on top of image */
-.hero-product > div:last-child {
-  position: relative;
-  z-index: 1;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 100%;
+  margin: 0;
   padding: 0;
 }
 
-/* Cell within image row */
+/* Row 2: heading - overlaid above the product image, near the top */
+.hero-product > div:last-child {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  padding: 60px 32px 0;
+  text-align: center;
+}
+
 .hero-product > div:first-child > div {
   position: absolute;
   inset: 0;
 }
 
-/* Cell within content row */
 .hero-product > div:last-child > div {
-  text-align: center;
   width: 100%;
 }
 
@@ -57,34 +63,44 @@
   width: 100%;
   height: 100%;
   object-fit: cover;
+  object-position: 50% 50%;
   display: block;
 }
 
-/* Heading styles */
-.hero-product h2 {
-  font-size: 36px;
-  font-weight: 700;
-  font-family: var(--heading-font-family);
-  color: var(--text-color);
-  line-height: 1.2;
-  text-align: center;
-  margin: 0;
+/* Heading - source mobile: 32px / 700 / 40px line / white / centered */
+.hero-product h1 {
+  margin: 0 0 12px;
   padding: 0;
+  color: #fff;
+  font-family: "Samsung One KR", "Samsung One", sans-serif;
+  font-size: 32px;
+  font-weight: 700;
+  line-height: 40px;
+  text-align: center;
 }
 
-/* No-image variant */
+/* No-image variant fallback */
+.hero-product.no-image {
+  background-color: #000;
+}
+
 .hero-product.no-image * {
-  color: var(--text-color);
+  color: #fff;
 }
 
-/* Desktop styles */
+/* Desktop - source: 1440 x 640, heading 72px / 700 / 87px line / margin 24px */
 @media (width >= 900px) {
   .hero-product {
-    min-height: 700px;
+    min-height: 640px;
   }
 
-  .hero-product h2 {
-    font-size: 48px;
-    line-height: 57.6px;
+  .hero-product > div:last-child {
+    padding: 100px 64px 0;
+  }
+
+  .hero-product h1 {
+    margin: 0 0 24px;
+    font-size: 72px;
+    line-height: 87px;
   }
 }

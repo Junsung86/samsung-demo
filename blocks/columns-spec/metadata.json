@@ -1,0 +1,39 @@
+{
+  "variantName": "columns-spec",
+  "baseBlock": "columns",
+  "version": "1.0.0",
+  "created": "2026-06-28T13:04:00.000Z",
+  "sourceContext": {
+    "originUrl": "https://semiconductor.samsung.com/kr/dram/hbm/",
+    "originPage": "Samsung HBM product overview page",
+    "blockPosition": "middle"
+  },
+  "visualCharacteristics": {
+    "colorScheme": "light",
+    "density": "spacious",
+    "purpose": "feature-spec",
+    "imagePattern": "large"
+  },
+  "contentPattern": {
+    "structure": "heading + description + icon spec list + CTA | product image",
+    "buttonCount": 1,
+    "imageCount": 1
+  },
+  "reuseGuidance": {
+    "suitableFor": [
+      "product feature/spec sections with image + text split",
+      "side-by-side description and product imagery",
+      "alternating image-left / image-right layouts"
+    ],
+    "notSuitableFor": [
+      "card grids of repeating items",
+      "single-column text content",
+      "interactive expandable content"
+    ]
+  },
+  "usage": {
+    "pagesUsing": ["/kr/dram/hbm/index"],
+    "reuseCount": 1,
+    "lastUsed": "2026-06-28T13:04:00.000Z"
+  }
+}

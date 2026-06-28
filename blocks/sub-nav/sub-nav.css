@@ -1,99 +1,132 @@
-/* Samsung Sub-Navigation - TV & AV category bar */
-.sub-nav {
-  background-color: #f9f9f9;
+/* Samsung HBM LNB (local sub-navigation) - dark tab bar above the hero.
+   Source: .st-semi-lnb on semiconductor.samsung.com/kr/dram/hbm — black background,
+   "DRAM / HBM" label on the left, tab links (개요 active white, others grey) on the right. */
+
+/* Break the sub-nav out of the section's max-width so the black bar spans the
+   full viewport width (EDS wraps sections at --content-max-width). */
+.sub-nav-wrapper {
+  max-width: 100% !important;
   width: 100%;
-  position: sticky;
-  top: var(--nav-height);
-  z-index: 40;
-  border-bottom: 1px solid #c5c5d5;
+  padding: 0 !important;
 }
 
-.sub-nav > div:first-child {
-  display: flex;
+/* Full-width dark bar. The block's two children (.sub-nav-title and
+   .sub-nav-links) sit on a single row via a 3-column grid: label at the
+   left, tab group centered (matching the source LNB). */
+.sub-nav {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
   align-items: center;
-  justify-content: space-between;
-  max-width: 1440px;
-  margin: 0 auto;
-  padding: 0 20px;
-  height: 56px;
+  gap: 24px;
+  width: 100%;
+  min-height: 56px;
+  padding: 0 48px;
+  box-sizing: border-box;
+  background-color: #000;
+  font-family: "Samsung One KR", "Samsung One", sans-serif;
 }
 
-@media (width >= 900px) {
-  .sub-nav > div:first-child {
-    padding: 0 80px;
-  }
-}
-
+/* Label group (DRAM / HBM) on the left */
 .sub-nav .sub-nav-title {
   display: flex;
   align-items: center;
-  font-size: 18px;
-  font-weight: 600;
-  color: #1a1c1c;
+  gap: 8px;
+  font-size: 16px;
+  font-weight: 700;
+  color: #fff;
   white-space: nowrap;
 }
 
+/* The block wraps the label in a generic div + <p>; flatten and zero margins
+   so the label aligns on the same baseline as the tab row. */
+.sub-nav .sub-nav-title > div {
+  display: contents;
+}
+
+.sub-nav .sub-nav-title p {
+  margin: 0;
+}
+
+.sub-nav .sub-nav-title a {
+  color: #aaa;
+  text-decoration: none;
+}
+
+.sub-nav .sub-nav-title a:hover {
+  color: #fff;
+}
+
+/* Tab links on the right */
+/* stylelint-disable no-descending-specificity */
 .sub-nav .sub-nav-links {
   display: flex;
   align-items: center;
-  gap: 24px;
+}
+
+/* The block wraps the list in a generic div; flatten it so the <ul> can flex. */
+.sub-nav .sub-nav-links > div {
+  display: contents;
+}
+
+/* Horizontal tab row (was stacking vertically because <ul> defaults to block) */
+.sub-nav .sub-nav-links ul {
+  display: flex;
+  align-items: center;
+  gap: 28px;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.sub-nav .sub-nav-links li {
+  margin: 0;
 }
 
 .sub-nav .sub-nav-links a {
-  font-size: 14px;
-  font-weight: 600;
-  letter-spacing: 0.7px;
-  color: #454653;
+  position: relative;
+  font-size: 15px;
+  font-weight: 400;
+  color: #ddd;
   text-decoration: none;
   transition: color 0.2s;
-  height: 56px;
+  min-height: 56px;
   display: flex;
   align-items: center;
 }
 
 .sub-nav .sub-nav-links a:hover {
-  color: #1a1c1c;
-}
-
-.sub-nav .sub-nav-links a.active {
-  color: #001278;
-  border-bottom: 3px solid #001278;
-}
-
-.sub-nav .sub-nav-cta {
-  display: flex;
-  align-items: center;
-}
-
-/* stylelint-disable no-descending-specificity */
-.sub-nav .sub-nav-cta a {
-  background-color: #1428a0;
   color: #fff;
-  font-size: 14px;
-  font-weight: 600;
-  letter-spacing: 0.7px;
-  padding: 8px 24px;
-  border-radius: 9999px;
-  text-decoration: none;
-  transition: background-color 0.2s;
 }
 
-.sub-nav .sub-nav-cta a:hover {
-  background-color: #001278;
+/* Current page tab — white + bold, with a 2px white underline indicator. */
+.sub-nav .sub-nav-links a.active {
+  color: #fff;
+  font-weight: 700;
+}
+
+.sub-nav .sub-nav-links a.active::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 12px;
+  height: 2px;
+  background-color: #fff;
 }
 /* stylelint-enable no-descending-specificity */
 
-@media (width < 900px) {
+@media (width <= 900px) {
+  .sub-nav {
+    padding: 0 20px;
+  }
+
   .sub-nav .sub-nav-links {
+    gap: 20px;
     overflow-x: auto;
     -webkit-overflow-scrolling: touch;
   }
 
   .sub-nav .sub-nav-links a {
     white-space: nowrap;
-  }
-
-  .sub-nav .sub-nav-title {
-    display: none;
   }
 }
