@@ -11,11 +11,13 @@ async function fetchNav(navPath) {
   if (!resp.ok) return null;
   const tmp = document.createElement('div');
   tmp.innerHTML = await resp.text();
-  // Nav images use paths relative to the nav fragment (/content/). Rebase them to
-  // absolute so they resolve regardless of the current page URL.
+  // Local (aem up) serves nav from /content/, so its `images/...` paths must be
+  // rebased to /content/images/.... On DA/EDS the published fragment instead
+  // references EDS-hosted media as `./media_<hash>...` relative to the site root,
+  // which already resolves correctly — leave those untouched.
   tmp.querySelectorAll('img[src]').forEach((img) => {
     const src = img.getAttribute('src');
-    if (src && !src.startsWith('http') && !src.startsWith('/')) {
+    if (src && src.startsWith('images/')) {
       img.setAttribute('src', `/content/${src}`);
     }
   });
@@ -41,7 +43,7 @@ function toggleMenu(nav, forceExpanded = null) {
 }
 
 export default async function decorate(block) {
-  const navPath = '/content/nav';
+  const navPath = '/nav';
   const fragment = await fetchNav(navPath);
   block.textContent = '';
   if (!fragment) return;

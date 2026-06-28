@@ -8,10 +8,13 @@ async function fetchFooter(footerPath) {
   if (!resp.ok) return null;
   const tmp = document.createElement('div');
   tmp.innerHTML = await resp.text();
-  // Footer images use paths relative to the footer fragment (/content/). Rebase to absolute.
+  // Local (aem up) serves the footer from /content/, so its `images/...` paths must
+  // be rebased to /content/images/.... On DA/EDS the published fragment references
+  // EDS-hosted media as `./media_<hash>...` relative to the site root, which already
+  // resolves correctly — leave those untouched.
   tmp.querySelectorAll('img[src]').forEach((img) => {
     const src = img.getAttribute('src');
-    if (src && !src.startsWith('http') && !src.startsWith('/')) {
+    if (src && src.startsWith('images/')) {
       img.setAttribute('src', `/content/${src}`);
     }
   });
@@ -28,7 +31,7 @@ async function fetchFooter(footerPath) {
  * @param {Element} block The footer block element
  */
 export default async function decorate(block) {
-  const footerPath = '/content/footer';
+  const footerPath = '/footer';
   const fragment = await fetchFooter(footerPath);
   block.textContent = '';
   if (!fragment) return;
