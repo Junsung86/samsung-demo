@@ -39,8 +39,21 @@ export default async function decorate(block) {
   const footer = document.createElement('div');
   footer.className = 'footer-inner';
 
+  // Fragment sections, in order: [0] sitemap (multi-column link map),
+  // [1] social/newsroom channels + accessibility mark, [2] legal links + copyright.
   const sections = [...fragment.children].filter((c) => c.tagName === 'DIV');
-  const [topEl, bottomEl] = sections;
+  const [sitemapEl, topEl, bottomEl] = sections;
+
+  // Sitemap: each inner <div> is a category column (heading + grouped links).
+  const sitemap = document.createElement('div');
+  sitemap.className = 'footer-sitemap';
+  if (sitemapEl) {
+    [...sitemapEl.children].forEach((col) => {
+      if (col.tagName !== 'DIV') return;
+      col.classList.add('footer-sitemap-col');
+      sitemap.append(col);
+    });
+  }
 
   const top = document.createElement('div');
   top.className = 'footer-top';
@@ -50,6 +63,6 @@ export default async function decorate(block) {
   bottom.className = 'footer-bottom';
   if (bottomEl) bottom.append(...bottomEl.childNodes);
 
-  footer.append(top, bottom);
+  footer.append(sitemap, top, bottom);
   block.append(footer);
 }
