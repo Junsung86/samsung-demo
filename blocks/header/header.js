@@ -2,12 +2,14 @@
 const isDesktop = window.matchMedia('(min-width: 1025px)');
 
 /**
- * Fetch the nav fragment. Localhost / aem up serves it at /content/nav.plain.html;
- * DA/EDS production resolves via the nav metadata path.
+ * Fetch the nav fragment. Localhost / aem up serves it at /content/{locale}nav.plain.html;
+ * DA/EDS production resolves via the nav metadata path ({locale}/nav). The locale
+ * segment is derived from the current page so /en/* pages get the English nav.
  */
 async function fetchNav(navPath) {
-  let resp = await fetch('/content/nav.plain.html');
-  if (!resp.ok && navPath) resp = await fetch(`${navPath}.plain.html`);
+  let resp = await fetch(`/content${navPath}.plain.html`);
+  if (!resp.ok) resp = await fetch(`${navPath}.plain.html`);
+  if (!resp.ok && navPath !== '/nav') resp = await fetch('/content/nav.plain.html');
   if (!resp.ok) return null;
   const tmp = document.createElement('div');
   tmp.innerHTML = await resp.text();
@@ -43,7 +45,9 @@ function toggleMenu(nav, forceExpanded = null) {
 }
 
 export default async function decorate(block) {
-  const navPath = '/nav';
+  // Locale-aware nav: /en/* pages use the English fragment (/en/nav), others /nav.
+  const isEn = /^\/(content\/)?en(\/|$)/.test(window.location.pathname);
+  const navPath = isEn ? '/en/nav' : '/nav';
   const fragment = await fetchNav(navPath);
   block.textContent = '';
   if (!fragment) return;

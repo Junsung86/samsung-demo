@@ -1,0 +1,15 @@
+{
+  "status": "success",
+  "url": "https://semiconductor.samsung.com/us/news-events/news/samsung-electronics-begins-shipment-of-industry-first-hbm4e-samples/",
+  "path": "en/news-events/news/samsung-electronics-begins-shipment-of-industry-first-hbm4e-samples",
+  "timestamp": "2026-06-29T03:21:55.475Z",
+  "title": "Samsung Electronics Begins Shipment of Industry-First HBM4E Samples | Samsung Semiconductor Global",
+  "template": "news-article",
+  "blocks": [
+    "article-header",
+    "tags-hashtag",
+    "tags-hashtag",
+    "banner-newsroom",
+    "cards-news"
+  ]
+}

@@ -36,7 +36,8 @@ export default function decorate(block) {
     const moreBtn = document.createElement('button');
     moreBtn.type = 'button';
     moreBtn.className = 'cards-content-more-btn';
-    moreBtn.textContent = '더 보기';
+    const isEn = /^\/(content\/)?en(\/|$)/.test(window.location.pathname);
+    moreBtn.textContent = isEn ? 'See more' : '더 보기';
     moreBtn.addEventListener('click', () => {
       const hidden = items.filter((li) => li.classList.contains('cards-content-hidden'));
       hidden.slice(0, STEP).forEach((li) => li.classList.remove('cards-content-hidden'));

@@ -3,8 +3,9 @@
  * DA/EDS production resolves via the footer metadata path.
  */
 async function fetchFooter(footerPath) {
-  let resp = await fetch('/content/footer.plain.html');
-  if (!resp.ok && footerPath) resp = await fetch(`${footerPath}.plain.html`);
+  let resp = await fetch(`/content${footerPath}.plain.html`);
+  if (!resp.ok) resp = await fetch(`${footerPath}.plain.html`);
+  if (!resp.ok && footerPath !== '/footer') resp = await fetch('/content/footer.plain.html');
   if (!resp.ok) return null;
   const tmp = document.createElement('div');
   tmp.innerHTML = await resp.text();
@@ -31,7 +32,9 @@ async function fetchFooter(footerPath) {
  * @param {Element} block The footer block element
  */
 export default async function decorate(block) {
-  const footerPath = '/footer';
+  // Locale-aware footer: /en/* pages use the English fragment (/en/footer), others /footer.
+  const isEn = /^\/(content\/)?en(\/|$)/.test(window.location.pathname);
+  const footerPath = isEn ? '/en/footer' : '/footer';
   const fragment = await fetchFooter(footerPath);
   block.textContent = '';
   if (!fragment) return;

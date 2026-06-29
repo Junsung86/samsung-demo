@@ -1,0 +1,15 @@
+{
+  "status": "success",
+  "url": "https://semiconductor.samsung.com/us/news-events/news/samsung-ships-industry-first-commercial-hbm4-with-ultimate-performance-for-ai-computing/",
+  "path": "en/news-events/news/samsung-ships-industry-first-commercial-hbm4-with-ultimate-performance-for-ai-computing",
+  "timestamp": "2026-06-29T03:22:04.355Z",
+  "title": "Samsung Ships Industry-First Commercial HBM4 With Ultimate Performance for AI Computing | Samsung Semiconductor Global",
+  "template": "news-article",
+  "blocks": [
+    "article-header",
+    "tags-hashtag",
+    "tags-hashtag",
+    "banner-newsroom",
+    "cards-news"
+  ]
+}

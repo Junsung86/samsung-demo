@@ -231,10 +231,17 @@ export default function transform(hookName, element, payload) {
     // and mark the current tab.
     if (element.querySelector('.st-semi-lnb') || element.querySelector('.st-semi-hero-carousel, .hero-product')) {
       const doc = element.ownerDocument;
+      // Locale-aware: English global pages (/us/, /en/) use English labels and
+      // root-relative hrefs; Korean (/kr/) uses Korean labels and /kr/ hrefs.
+      const srcUrl = (payload && payload.url) || (payload && payload.params && payload.params.originalURL) || '';
+      const isKr = /\/kr\//.test(srcUrl);
+      const base = isKr ? '/kr/dram' : '/dram';
+      const overviewLabel = isKr ? '개요' : 'Overview';
+
       // Label group: DRAM (link) / HBM (current section).
       const labelWrap = doc.createElement('div');
       const catLink = doc.createElement('a');
-      catLink.setAttribute('href', '/kr/dram/');
+      catLink.setAttribute('href', `${base}/`);
       catLink.textContent = 'DRAM';
       const cur = doc.createElement('span');
       cur.textContent = 'HBM';
@@ -244,10 +251,10 @@ export default function transform(hookName, element, payload) {
       const tabsWrap = doc.createElement('div');
       const tabList = doc.createElement('ul');
       [
-        ['개요', '/kr/dram/hbm/'],
-        ['HBM4', '/kr/dram/hbm/hbm4/'],
-        ['HBM3E', '/kr/dram/hbm/hbm3e/'],
-        ['HBM3', '/kr/dram/hbm/hbm3/'],
+        [overviewLabel, `${base}/hbm/`],
+        ['HBM4', `${base}/hbm/hbm4/`],
+        ['HBM3E', `${base}/hbm/hbm3e/`],
+        ['HBM3', `${base}/hbm/hbm3/`],
       ].forEach(([label, href]) => {
         const li = doc.createElement('li');
         const link = doc.createElement('a');
