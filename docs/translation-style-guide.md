@@ -127,3 +127,24 @@
 > 새 UI 문자열이 생기면: ① `scripts/i18n.js` 사전에 키 추가 → ② 블록에서
 > `t('key')` 호출. 새 로케일을 추가하면: 사전의 각 항목과 `getLocale()`에 해당
 > 언어 코드를 더하고, 콘텐츠 프래그먼트를 해당 경로에 생성합니다.
+
+## 8. AI 에이전트용 메타데이터 (machine-readable, 비표시)
+
+사용자에게는 보이지 않지만 검색엔진·AI 에이전트가 읽는 **schema.org JSON-LD**를
+`<head>`에 주입합니다. 구현: `scripts/seo-jsonld.js` (페이지 로드 lazy 단계에서
+1회 실행, 가시적 DOM 추가 없음).
+
+### 8.1 요약(Summary) → WebPage description
+- 페이지 메타데이터 **`summary`**(없으면 표준 `description`)를 읽어
+  `{ @type: WebPage, name, description, url, inLanguage }` JSON-LD로 출력합니다.
+- 작성자는 DA 페이지 메타데이터에 `summary` 항목을 추가하면 됩니다(선택).
+  값이 없으면 이 블록은 생성되지 않습니다.
+
+### 8.2 FAQ → FAQPage (기존 FAQ 블록 재활용)
+- 페이지에 이미 있는 **FAQ 블록(`.accordion-faq`)** 의 질문/답변을 그대로 읽어
+  `{ @type: FAQPage, mainEntity: [Question/Answer …] }` JSON-LD로 변환합니다.
+- 별도 콘텐츠 작성이 필요 없습니다 — 본문 FAQ가 곧 에이전트용 FAQ가 됩니다.
+- 로케일 무관: KR 페이지는 한국어 Q&A, EN 페이지는 영어 Q&A가 자동 반영됩니다.
+
+> 즉 작성자 작업은 (선택) 페이지 `summary` 메타 입력뿐이며, FAQ는 본문 블록에서
+> 자동 생성됩니다.

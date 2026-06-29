@@ -12,6 +12,7 @@ import {
   loadCSS,
 } from './aem.js';
 import { loadPlaceholders } from './i18n.js';
+import injectAgentMetadata from './seo-jsonld.js';
 
 // --- BEGIN DM/Scene7 auto-block (excat-generated) ---
 
@@ -320,6 +321,10 @@ async function loadLazy(doc) {
 
   const main = doc.querySelector('main');
   await loadSections(main);
+
+  // Inject machine-readable metadata (summary + FAQ JSON-LD) for AI agents.
+  // Runs after sections decorate so FAQ blocks are present; adds no visible DOM.
+  injectAgentMetadata(doc);
 
   const { hash } = window.location;
   const element = hash ? doc.getElementById(hash.substring(1)) : false;
