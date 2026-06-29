@@ -69,15 +69,17 @@
   display: block;
 }
 
-/* Heading - source mobile: 32px / 700 / 40px line / white / centered */
+/* Heading - white / centered. Mobile uses 28px so the forced first line
+   ("AI 인프라의 미래를 설계하는", joined by <br>) fits inside the padded
+   area, leaving a visible side margin. */
 .hero-product h1 {
   margin: 0 0 12px;
   padding: 0;
   color: #fff;
   font-family: "Samsung One KR", "Samsung One", sans-serif;
-  font-size: 32px;
+  font-size: 28px;
   font-weight: 700;
-  line-height: 40px;
+  line-height: 36px;
   text-align: center;
 }
 
