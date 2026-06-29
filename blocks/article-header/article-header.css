@@ -19,6 +19,20 @@
   line-height: 1.4;
 }
 
+/* The eyebrow/date rows wrap their text in <p>, which the global
+   `main > .section p` rule otherwise centers and caps at 700px. Override so the
+   inner text spans the full header width and aligns with the row. */
+.article-header .article-header-eyebrow p,
+.article-header .article-header-date p {
+  max-width: none;
+  margin: 0;
+  padding: 0;
+  font-size: inherit;
+  color: inherit;
+  line-height: inherit;
+  text-align: inherit;
+}
+
 .article-header .article-header-title h1,
 .article-header .article-header-title {
   margin: 0 0 32px;
