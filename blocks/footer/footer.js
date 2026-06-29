@@ -76,6 +76,23 @@ export default async function decorate(block) {
     }
   }
 
+  // Mobile accordion: each sitemap column collapses under its <h2> heading.
+  // The source footer shows the sitemap as tap-to-expand accordions on mobile;
+  // on desktop the columns are always open (CSS ignores aria-expanded there).
+  const isMobile = window.matchMedia('(max-width: 768px)');
+  sitemap.querySelectorAll('.footer-sitemap-col').forEach((col) => {
+    const heading = col.querySelector('h2');
+    if (!heading) return;
+    col.setAttribute('aria-expanded', 'false');
+    heading.addEventListener('click', (e) => {
+      if (!isMobile.matches) return;
+      // On mobile the heading toggles the column instead of following its link.
+      e.preventDefault();
+      const open = col.getAttribute('aria-expanded') === 'true';
+      col.setAttribute('aria-expanded', open ? 'false' : 'true');
+    });
+  });
+
   const top = document.createElement('div');
   top.className = 'footer-top';
   if (topEl) top.append(...topEl.childNodes);

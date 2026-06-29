@@ -164,9 +164,59 @@ footer .footer-bottom > p:last-child {
     padding: 28px 20px;
   }
 
+  /* Sitemap becomes a single-column accordion: each category is a full-width
+     row whose heading toggles its links open/closed (matches the source). */
   footer .footer-sitemap {
-    grid-template-columns: repeat(2, 1fr);
-    gap: 28px 16px;
+    display: block;
+    padding-bottom: 0;
+  }
+
+  footer .footer-sitemap-col {
+    border-bottom: 1px solid #e5e5e5;
+  }
+
+  footer .footer-sitemap-col h2 {
+    position: relative;
+    margin: 0;
+    padding: 18px 24px 18px 0;
+    cursor: pointer;
+  }
+
+  /* chevron indicator on the right of each category heading */
+  footer .footer-sitemap-col h2::after {
+    content: '';
+    position: absolute;
+    right: 4px;
+    top: 50%;
+    width: 9px;
+    height: 9px;
+    border-right: 1.5px solid #000;
+    border-bottom: 1.5px solid #000;
+    transform: translateY(-70%) rotate(45deg);
+    transition: transform 0.2s ease;
+  }
+
+  footer .footer-sitemap-col[aria-expanded='true'] h2::after {
+    transform: translateY(-30%) rotate(-135deg);
+  }
+
+  /* heading link shouldn't be independently clickable on mobile — the whole
+     heading row toggles the accordion (handled in footer.js) */
+  footer .footer-sitemap-col h2 a {
+    pointer-events: none;
+  }
+
+  /* collapse everything below the category heading until expanded */
+  footer .footer-sitemap-col > :not(h2) {
+    display: none;
+  }
+
+  footer .footer-sitemap-col[aria-expanded='true'] > :not(h2) {
+    display: block;
+  }
+
+  footer .footer-sitemap-col[aria-expanded='true'] {
+    padding-bottom: 16px;
   }
 
   footer .footer-top {

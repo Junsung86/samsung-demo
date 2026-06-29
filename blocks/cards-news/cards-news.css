@@ -38,6 +38,29 @@
   min-width: 0;
 }
 
+/* Mobile (< 1024px): each related card is a horizontal row — a small fixed
+   thumbnail on the left and the title/date stacked on the right, matching the
+   source. The desktop grid below overrides this back to stacked cards. */
+@media (width <= 1023px) {
+  .cards-news > ul > li {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    gap: 16px;
+  }
+
+  .cards-news .cards-news-card-image {
+    flex: 0 0 104px;
+    width: 104px;
+  }
+
+  .cards-news .cards-news-card-body {
+    flex: 1;
+    min-width: 0;
+    padding-top: 0;
+  }
+}
+
 .cards-news .cards-news-card-image {
   line-height: 0;
 }
