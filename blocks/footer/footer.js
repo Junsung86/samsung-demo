@@ -1,3 +1,5 @@
+import { localizedFragmentPath } from '../../scripts/i18n.js';
+
 /**
  * Fetch the footer fragment. Localhost / aem up serves it at /content/footer.plain.html;
  * DA/EDS production resolves via the footer metadata path.
@@ -33,8 +35,7 @@ async function fetchFooter(footerPath) {
  */
 export default async function decorate(block) {
   // Locale-aware footer: /en/* pages use the English fragment (/en/footer), others /footer.
-  const isEn = /^\/(content\/)?en(\/|$)/.test(window.location.pathname);
-  const footerPath = isEn ? '/en/footer' : '/footer';
+  const footerPath = localizedFragmentPath('/footer');
   const fragment = await fetchFooter(footerPath);
   block.textContent = '';
   if (!fragment) return;

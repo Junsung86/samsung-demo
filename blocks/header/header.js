@@ -1,3 +1,5 @@
+import { localizedFragmentPath } from '../../scripts/i18n.js';
+
 // media query match that indicates desktop width
 const isDesktop = window.matchMedia('(min-width: 1025px)');
 
@@ -46,8 +48,7 @@ function toggleMenu(nav, forceExpanded = null) {
 
 export default async function decorate(block) {
   // Locale-aware nav: /en/* pages use the English fragment (/en/nav), others /nav.
-  const isEn = /^\/(content\/)?en(\/|$)/.test(window.location.pathname);
-  const navPath = isEn ? '/en/nav' : '/nav';
+  const navPath = localizedFragmentPath('/nav');
   const fragment = await fetchNav(navPath);
   block.textContent = '';
   if (!fragment) return;
