@@ -205,6 +205,15 @@ var CustomImportScript = (() => {
   var TransformHook = { beforeTransform: "beforeTransform", afterTransform: "afterTransform" };
   function transform(hookName, element, payload) {
     if (hookName === TransformHook.beforeTransform) {
+      const richBody = element.querySelector(
+        ".st-semi-article-detail_text-cont.rich-text, .AR02_article-detail"
+      );
+      if (richBody) {
+        richBody.querySelectorAll("sup").forEach((sup) => {
+          const txt = sup.textContent.trim();
+          sup.replaceWith(sup.ownerDocument.createTextNode(txt));
+        });
+      }
       const relGrid = element.querySelector(".CO31_related-content-grid");
       if (relGrid && relGrid.querySelectorAll(".CO31_related-content-grid-item").length <= 3) {
         const doc = element.ownerDocument;

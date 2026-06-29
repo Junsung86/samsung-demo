@@ -17,6 +17,23 @@ const TransformHook = { beforeTransform: 'beforeTransform', afterTransform: 'aft
 
 export default function transform(hookName, element, payload) {
   if (hookName === TransformHook.beforeTransform) {
+    // News-article rich-text body: trademark/footnote lines wrap a superscript
+    // mid-sentence (e.g. "* NVM Express<sup>®</sup> 및 NVMe<sup>®</sup>는 …상표입니다.").
+    // html2md splits the text at each <sup> boundary, scattering one sentence
+    // across several <p>. Replace each <sup> with its inline text (wrapped in
+    // parens for footnote markers) so the whole line survives as ONE paragraph.
+    const richBody = element.querySelector(
+      '.st-semi-article-detail_text-cont.rich-text, .AR02_article-detail',
+    );
+    if (richBody) {
+      richBody.querySelectorAll('sup').forEach((sup) => {
+        const txt = sup.textContent.trim();
+        // Registered/trademark glyphs stay inline as-is; numeric/footnote markers
+        // are kept but not turned into a block. Either way, flatten to a text node.
+        sup.replaceWith(sup.ownerDocument.createTextNode(txt));
+      });
+    }
+
     // Inject the related-content cards that the source loads dynamically via the
     // "더 보기" (load more) button. They are NOT in the scraped HTML, so we add them
     // to the .CO31_related-content-grid before the cards-content parser runs. The
