@@ -116,8 +116,13 @@
 /* stylelint-enable no-descending-specificity */
 
 @media (width <= 900px) {
+  /* Stack the title (DRAM / HBM) above the tab row, matching the source's
+     mobile LNB layout. */
   .sub-nav {
-    padding: 0 20px;
+    grid-template-columns: 1fr;
+    align-items: stretch;
+    gap: 0;
+    padding: 12px 20px;
   }
 
   .sub-nav .sub-nav-links {
@@ -128,5 +133,10 @@
 
   .sub-nav .sub-nav-links a {
     white-space: nowrap;
+    min-height: 40px;
+  }
+
+  .sub-nav .sub-nav-links a.active::after {
+    bottom: 4px;
   }
 }
