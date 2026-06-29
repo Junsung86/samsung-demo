@@ -179,6 +179,30 @@
 }
 
 /* =====================================================================
+   Mobile layout: related-content cards are a horizontal row — image on the
+   left, text (category / title / hashtags) on the right.
+   ===================================================================== */
+@media (width <= 899px) {
+  .cards-content > ul > li:has(> .cards-content-card-body > p:first-child) {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    gap: 16px;
+  }
+
+  .cards-content > ul > li:has(> .cards-content-card-body > p:first-child) .cards-content-card-image {
+    flex: 0 0 120px;
+    width: 120px;
+  }
+
+  .cards-content > ul > li:has(> .cards-content-card-body > p:first-child) .cards-content-card-body {
+    flex: 1;
+    min-width: 0;
+    padding-top: 0;
+  }
+}
+
+/* =====================================================================
    Tablet / Desktop layout
    ===================================================================== */
 @media (width >= 900px) {
