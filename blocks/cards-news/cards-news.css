@@ -155,3 +155,10 @@
     margin: 0;
   }
 }
+
+/* Round every image in the news article body — plain inline body images
+   (default content) use the same radius as the captioned figures and cards.
+   Placed last so it follows the lower-specificity image rules above. */
+main .section.cards-news-container .default-content-wrapper img {
+  border-radius: 20px;
+}
