@@ -134,6 +134,20 @@ header nav .nav-sections ul {
 /* mobile-first: sections hidden until hamburger opens */
 header nav[aria-expanded='false'] .nav-sections { display: none; }
 
+/* When open on mobile the menu is a solid dark overlay panel that fills the
+   viewport below the bar — otherwise page content shows through behind it. */
+header nav[aria-expanded='true'] {
+  height: 100vh;
+  align-content: start;
+  overflow-y: auto;
+  background-color: #000;
+}
+
+header nav[aria-expanded='true'] .nav-sections {
+  background-color: #000;
+  min-height: calc(100vh - var(--nav-height, 60px));
+}
+
 header nav .nav-sections > ul > li {
   font-size: 16px;
   font-weight: 700;

@@ -208,6 +208,44 @@ main .columns-spec > div > div > p:last-child {
   text-decoration: none;
 }
 
+/* Mobile (< 900px): source centers the feature heading + description, then
+   places the product image, then the spec cards, then the CTA. Dissolve the
+   text cell so the row's flex order can interleave the image between the
+   description and the spec cards (source order: heading → description →
+   image → cards → CTA). Heading 30px, description 14px, both centered. */
+@media (width <= 899px) {
+  .columns-spec > div > div:not(.columns-spec-img-col) {
+    display: contents;
+  }
+
+  main .columns-spec h2 {
+    order: 1;
+    text-align: center;
+    font-size: 30px;
+    line-height: 38px;
+  }
+
+  main .columns-spec > div > div > p:not(:last-child) {
+    order: 2;
+    text-align: center;
+    font-size: 14px;
+    line-height: 20px;
+  }
+
+  .columns-spec > div > .columns-spec-img-col {
+    order: 3;
+  }
+
+  .columns-spec ul {
+    order: 4;
+  }
+
+  main .columns-spec > div > div > p:last-child {
+    order: 5;
+    text-align: center;
+  }
+}
+
 @media (width >= 900px) {
   /* Promote the row to a grid so the text cell's children (heading,
      description, list, CTA) and the image can be placed precisely:

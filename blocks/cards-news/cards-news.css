@@ -94,6 +94,20 @@
   line-height: 16px;
 }
 
+/* Body text in the news article section is left-aligned and full-width at ALL
+   widths (source renders it left-aligned on mobile too). The global
+   `main > .section p` rule otherwise centers + caps it at 700px; the desktop
+   grid below re-asserts this, but mobile/tablet need it as a base rule. */
+main .section.cards-news-container .default-content-wrapper p,
+main .section.cards-news-container .default-content-wrapper h2,
+main .section.cards-news-container .default-content-wrapper h3 {
+  max-width: none;
+  margin-left: 0;
+  margin-right: 0;
+  padding: 0;
+  text-align: left;
+}
+
 /* --- Two-column article + related layout (desktop only) --- */
 
 /* The news body section carries every block-container class for the blocks it
