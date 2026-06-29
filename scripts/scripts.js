@@ -11,6 +11,7 @@ import {
   loadSections,
   loadCSS,
 } from './aem.js';
+import { loadPlaceholders } from './i18n.js';
 
 // --- BEGIN DM/Scene7 auto-block (excat-generated) ---
 
@@ -290,6 +291,9 @@ export function decorateMain(main) {
 async function loadEager(doc) {
   document.documentElement.lang = 'en';
   decorateTemplateAndTheme();
+  // Warm the i18n placeholders cache so blocks can resolve UI strings
+  // synchronously via t() during decoration.
+  await loadPlaceholders();
   const main = doc.querySelector('main');
   if (main) {
     decorateMain(main);

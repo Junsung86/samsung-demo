@@ -1,0 +1,12 @@
+{
+  "total": 1,
+  "offset": 0,
+  "limit": 1,
+  "data": [
+    {
+      "Key": "cards-content.loadMore",
+      "Value": "더 보기"
+    }
+  ],
+  ":type": "sheet"
+}
