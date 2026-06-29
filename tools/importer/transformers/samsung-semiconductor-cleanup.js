@@ -188,6 +188,17 @@ export default function transform(hookName, element, payload) {
       '.ta-only',
       '.mo-only',
     ]);
+
+    // News-article (AR02) body images: each inline figure is rendered TWICE, as a
+    // .st-semi-article-detail_image-desktop copy AND a .st-semi-article-detail_image-mobile
+    // copy (responsive duplicates, verified in cleaned.html lines 2073/2079, 2088/2096…).
+    // Keep the DESKTOP copy and drop the MOBILE copy so the article-image parser and the
+    // default-content body see a single image per figure (analogous to .ta-only/.mo-only
+    // above). Removed BEFORE parsing. Guard on the desktop class so this never affects
+    // hbm-overview, which has no such markup.
+    if (element.querySelector('.st-semi-article-detail_image-desktop')) {
+      WebImporter.DOMUtils.remove(element, ['.st-semi-article-detail_image-mobile']);
+    }
   }
 
   if (hookName === TransformHook.afterTransform) {
@@ -266,6 +277,30 @@ export default function transform(hookName, element, payload) {
       '.st-semi-lnb',
     ]);
 
+    // --- News-article (AR02) non-authorable chrome + widgets ---
+    // These selectors are AR02 article-specific (verified in cleaned.html) and are
+    // absent from hbm-overview, so removing them only affects the news page:
+    // - #article-video-popup          : hidden YouTube video popup overlay (line 2004)
+    // - .fab-area                      : floating scroll-to-top button (line 1994)
+    // - .AR02_article-header-sns       : social-share button row; the article-header
+    //                                    block regenerates share controls, so the
+    //                                    scraped JS-driven row is chrome (line 1971)
+    // - .AR02_related-sticky-contents  : sticky sidebar "related contents" widget,
+    //                                    both mobile + pc copies (lines 2223/2260)
+    // - .AR02_related-fixed-whats-next-check / .AR02_related-fixed-whats-next :
+    //                                    floating "next article" overlay (lines 2276/2278)
+    // - .ar-semi-three-column-links    : empty secondary nav/link grid column (line 2358)
+    // The authorable related content lives in .ar-semi-related-content (preserved).
+    WebImporter.DOMUtils.remove(element, [
+      '#article-video-popup',
+      '.fab-area',
+      '.AR02_article-header-sns',
+      '.AR02_related-sticky-contents',
+      '.AR02_related-fixed-whats-next-check',
+      '.AR02_related-fixed-whats-next',
+      '.ar-semi-three-column-links',
+    ]);
+
     // body > header is an input-only shell (runMode/serviceDomain/etc.) that sits
     // before #root-container. Remove it explicitly without touching header#menu
     // (already removed above) or any in-content headings.
@@ -289,13 +324,86 @@ export default function transform(hookName, element, payload) {
     // these now top-level siblings.
     const rootContainer = element.querySelector('#root-container');
     if (rootContainer) {
-      const anchorBlock = element.querySelector('.hero-product, .st-semi-hero-carousel');
-      const grid = anchorBlock ? anchorBlock.parentElement : null;
-      if (grid && rootContainer.contains(grid)) {
-        while (grid.firstChild) {
-          element.insertBefore(grid.firstChild, rootContainer);
+      // News-article (AR02) layout: there is no hero, so the hbm-overview anchor
+      // (.hero-product/.st-semi-hero-carousel) does not exist and the generic
+      // grid-child hoist below cannot fire. The authorable sections also sit at
+      // mixed depths: the article header section, rich-text body, hashtags and
+      // newsroom banner are nested inside #articleheader > … > .AR02_article-detail,
+      // while the related-content grid lives in a sibling .cm-semi-container. Hoist
+      // each section root to be a direct child of main, in document order, so the
+      // sections transformer can place <hr>/Section Metadata between them.
+      // Guarded on #articleheader so this branch never runs for hbm-overview.
+      const articleHeader = element.querySelector('#articleheader');
+      if (articleHeader) {
+        // NOTE: parsers run BEFORE this afterTransform hook, so the source
+        // elements have already been REPLACED by their block tables. A block
+        // produced by WebImporter.Blocks.createBlock is a <table> whose first
+        // cell text is the block name (e.g. "article-header"). So we locate each
+        // block by that header-cell text, NOT by the original AR02 selector and
+        // NOT by a class (the tables carry no class).
+        // Match tolerantly: WebImporter.Blocks.createBlock may render the header
+        // cell as "article-header", "Article Header", "Article-Header", etc.
+        // Normalize both sides by stripping non-alphanumerics and lowercasing.
+        const norm = (s) => (s || '').replace(/[^a-z0-9]/gi, '').toLowerCase();
+        const findBlockTable = (name) => {
+          const want = norm(name);
+          return [...element.querySelectorAll('table')].find((t) => {
+            const cell = t.querySelector('tr > th, tr > td');
+            return cell && norm(cell.textContent).startsWith(want);
+          });
+        };
+
+        const headerBlock = findBlockTable('article-header');
+        // The rich-text body wrapper (.AR02_article-detail) is NOT replaced by a
+        // parser (only its 2 captioned images became article-image tables), so it
+        // is hoisted as-is and carries the body prose + footnote + inline images.
+        const articleDetail = element.querySelector('.AR02_article-detail');
+        const tagsBlock = findBlockTable('tags-hashtag');
+        const bannerBlock = findBlockTable('banner-newsroom');
+        const cardsBlock = findBlockTable('cards-news');
+
+        // Build the ordered list of section roots (document order). insertBefore
+        // moves each node to just before #root-container, so inserting in order
+        // yields the same order as top-level main children.
+        const ordered = [];
+        if (headerBlock) ordered.push(headerBlock);
+        if (articleDetail) ordered.push(articleDetail);
+        if (tagsBlock) ordered.push(tagsBlock);
+        if (bannerBlock) ordered.push(bannerBlock);
+        if (cardsBlock) {
+          // The cards-news parser emits the "관련 컨텐츠" heading as a sibling
+          // <h2>/<h3> right before the block — keep it grouped in this section.
+          const prev = cardsBlock.previousElementSibling;
+          if (prev && /^H[1-6]$/.test(prev.tagName)) ordered.push(prev);
+          ordered.push(cardsBlock);
         }
+
+        ordered.forEach((sectionRoot) => {
+          if (sectionRoot && rootContainer.contains(sectionRoot)) {
+            element.insertBefore(sectionRoot, rootContainer);
+          }
+        });
         rootContainer.remove();
+
+        // Remove any leftover empty/structural top-level <div> (e.g. an injected,
+        // absolutely-positioned tooltip overlay div that scripts append to the DOM).
+        // Only drop direct children of main that have no id, no class, and no text/img —
+        // i.e. not one of the hoisted section roots above.
+        element.querySelectorAll(':scope > div').forEach((div) => {
+          const hasContent = div.textContent.trim() || div.querySelector('img, picture, iframe, ul, table');
+          if (!div.id && !div.className && !hasContent) {
+            div.remove();
+          }
+        });
+      } else {
+        const anchorBlock = element.querySelector('.hero-product, .st-semi-hero-carousel');
+        const grid = anchorBlock ? anchorBlock.parentElement : null;
+        if (grid && rootContainer.contains(grid)) {
+          while (grid.firstChild) {
+            element.insertBefore(grid.firstChild, rootContainer);
+          }
+          rootContainer.remove();
+        }
       }
     }
 

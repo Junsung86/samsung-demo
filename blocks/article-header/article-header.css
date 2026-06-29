@@ -1,0 +1,93 @@
+/* Block: article-header
+ * News-article header migrated from semiconductor.samsung.com/kr/news-events/news.
+ * eyebrow category, large H1 title, social-share row, publish date.
+ */
+
+.article-header {
+  font-family: "Samsung One KR", "Samsung One", sans-serif;
+  max-width: var(--content-max-width);
+  margin: 0 auto;
+  padding: 40px 0 24px;
+  text-align: left;
+}
+
+.article-header .article-header-eyebrow {
+  margin: 0 0 12px;
+  color: #666;
+  font-size: 18px;
+  font-weight: 700;
+  line-height: 1.4;
+}
+
+.article-header .article-header-title h1,
+.article-header .article-header-title {
+  margin: 0 0 32px;
+  color: #000;
+  font-size: 32px;
+  font-weight: 700;
+  line-height: 1.25;
+  text-align: left;
+}
+
+/* Social-share row: icon-only circular buttons rendered from the bundled SVGs */
+.article-header .article-header-sns {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  align-items: center;
+  margin: 24px 0;
+  padding: 0;
+  list-style: none;
+}
+
+.article-header .article-header-sns li {
+  margin: 0;
+}
+
+.article-header .article-header-sns a,
+.article-header .article-header-sns button {
+  display: inline-flex;
+  width: 32px;
+  height: 32px;
+  padding: 0;
+  border: 0;
+  border-radius: 50%;
+  background-color: #fff;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+  font-size: 0;
+  cursor: pointer;
+  transition: opacity 0.2s;
+}
+
+.article-header .article-header-sns a:hover,
+.article-header .article-header-sns button:hover {
+  opacity: 0.6;
+}
+
+.article-header .article-header-sns-facebook { background-image: url('icons/share-facebook.svg'); }
+.article-header .article-header-sns-x { background-image: url('icons/share-twitterx.svg'); }
+.article-header .article-header-sns-linkedin { background-image: url('icons/share-linkedin.svg'); }
+.article-header .article-header-sns-email { background-image: url('icons/share-mail.svg'); }
+.article-header .article-header-sns-copy { background-image: url('icons/share-link.svg'); }
+
+.article-header .article-header-sns-copied {
+  opacity: 0.4;
+}
+
+.article-header .article-header-date {
+  margin: 0;
+  color: #666;
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 1.4;
+}
+
+@media (width >= 900px) {
+  .article-header .article-header-title h1,
+  .article-header .article-header-title {
+    font-size: 48px;
+    line-height: 1.2;
+  }
+}

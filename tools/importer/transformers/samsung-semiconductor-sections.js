@@ -27,17 +27,33 @@ export default function transform(hookName, element, payload) {
 
   const doc = element.ownerDocument;
 
+  // Promote an element to the top-level <main> child that contains it. Section
+  // breaks (<hr>) and Section Metadata blocks must be inserted between the direct
+  // children of main, but some section selectors resolve to a nested descendant
+  // (e.g. news-article s2 ".AR02_article-detail .st-semi-…rich-text" lives inside
+  // the hoisted top-level div.AR02_article-detail). Climbing to the top-level
+  // ancestor keeps inserts at the correct sibling level. For hbm-overview the
+  // selector already matches a direct child of main, so this is a no-op there.
+  const toTopLevel = (el) => {
+    let node = el;
+    while (node && node.parentElement && node.parentElement !== element) {
+      node = node.parentElement;
+    }
+    return node && node.parentElement === element ? node : null;
+  };
+
   // Resolve each section's anchor element in document order. Selectors are
   // POST-PARSE (block class or surviving default-content wrapper); duplicate
   // selectors (.columns-spec ×3, .cards-content ×2) are disambiguated by
-  // consuming matches in order via a per-selector occurrence counter.
+  // consuming matches in order via a per-selector occurrence counter. Each match
+  // is then promoted to its top-level main child so inserts land between sections.
   const selectorCounters = {};
   const anchors = sections.map((section) => {
     if (!section || !section.selector) return null;
     const matches = element.querySelectorAll(section.selector);
     const idx = selectorCounters[section.selector] || 0;
     selectorCounters[section.selector] = idx + 1;
-    return matches[idx] || null;
+    return toTopLevel(matches[idx] || null);
   });
 
   // Reverse order: inserting before/after a later section first keeps the

@@ -1,0 +1,39 @@
+{
+  "variantName": "cards-news",
+  "baseBlock": "cards",
+  "version": "1.0.0",
+  "created": "2026-06-28T16:52:00.000Z",
+  "sourceContext": {
+    "originUrl": "https://semiconductor.samsung.com/kr/news-events/news/samsung-electronics-begins-shipment-of-industry-first-hbm4e-samples/",
+    "originPage": "Samsung Semiconductor news article page",
+    "blockPosition": "bottom"
+  },
+  "visualCharacteristics": {
+    "colorScheme": "light",
+    "density": "spacious",
+    "purpose": "related-news-grid",
+    "imagePattern": "large"
+  },
+  "contentPattern": {
+    "structure": "thumbnail image + linked title + publish date per card",
+    "buttonCount": 0,
+    "imageCount": 1
+  },
+  "reuseGuidance": {
+    "suitableFor": [
+      "related-content / latest-news card grids where each card has a publish date",
+      "article or press-release listing grids (image + title + date)",
+      "blog/news index card rows"
+    ],
+    "notSuitableFor": [
+      "application/category card grids with eyebrow + tags (use cards-content)",
+      "card grids needing a load-more (use cards-content)",
+      "side-by-side feature/spec layouts"
+    ]
+  },
+  "usage": {
+    "pagesUsing": ["/kr/news-events/news/samsung-electronics-begins-shipment-of-industry-first-hbm4e-samples/index"],
+    "reuseCount": 1,
+    "lastUsed": "2026-06-28T16:52:00.000Z"
+  }
+}

@@ -1,0 +1,38 @@
+/* Block: tags-hashtag
+ * Hashtag row migrated from semiconductor.samsung.com/kr/news-events/news.
+ * The source renders plain inline "#tag" text links (no pill chrome), 14px,
+ * black, wrapping in a row with small gaps.
+ */
+
+.tags-hashtag {
+  font-family: "Samsung One KR", "Samsung One", sans-serif;
+  max-width: 800px;
+  margin: 24px auto;
+}
+
+.tags-hashtag .tags-hashtag-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px 16px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.tags-hashtag .tags-hashtag-list li {
+  margin: 0;
+}
+
+.tags-hashtag .tags-hashtag-chip {
+  display: inline-block;
+  color: #000;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 1.4;
+  white-space: nowrap;
+  text-decoration: none;
+}
+
+.tags-hashtag a.tags-hashtag-chip:hover {
+  text-decoration: underline;
+}

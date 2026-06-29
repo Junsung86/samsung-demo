@@ -1,0 +1,157 @@
+/* Block: cards-news
+ * Related-content article cards migrated from
+ * semiconductor.samsung.com/kr/news-events/news (news-article template).
+ *
+ * On the source, the article body and this related list sit side by side:
+ * a wide left article column + a 366px related sidebar on the right. The whole
+ * news body lives in ONE EDS section, so the layout rules below turn that
+ * section into a two-column grid (article wrappers → left, this block → right)
+ * and widen the body text (overriding the global centered/narrow defaults).
+ */
+
+.cards-news {
+  font-family: "Samsung One KR", "Samsung One", sans-serif;
+}
+
+.cards-news .cards-news-heading {
+  max-width: none;
+  margin: 0 0 20px;
+  padding: 0;
+  text-align: left;
+  font-size: 24px;
+  font-weight: 700;
+  line-height: 1.3;
+  color: #000;
+}
+
+.cards-news > ul {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 32px;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  text-align: left;
+}
+
+.cards-news > ul > li {
+  min-width: 0;
+}
+
+.cards-news .cards-news-card-image {
+  line-height: 0;
+}
+
+.cards-news .cards-news-card-image picture {
+  display: block;
+  width: 100%;
+}
+
+.cards-news .cards-news-card-image img {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+  border-radius: 15px;
+  background-color: #f0f0f0;
+}
+
+.cards-news .cards-news-card-body {
+  padding-top: 16px;
+  text-align: left;
+}
+
+.cards-news .cards-news-card-body h3,
+.cards-news .cards-news-card-body p {
+  max-width: none;
+  padding: 0;
+  margin: 0;
+  text-align: left;
+}
+
+/* linked title */
+.cards-news .cards-news-card-body h3 {
+  margin: 0 0 8px;
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 1.4;
+}
+
+.cards-news .cards-news-card-body h3 a {
+  color: rgb(0 0 0);
+}
+
+.cards-news .cards-news-card-body h3 a:hover {
+  text-decoration: underline;
+}
+
+/* publish date */
+.cards-news .cards-news-card-body .cards-news-date {
+  color: rgb(117 117 117);
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 16px;
+}
+
+/* --- Two-column article + related layout (desktop only) --- */
+
+/* The news body section carries every block-container class for the blocks it
+   holds; target the one that includes cards-news so these rules apply only to
+   the news-article body section. */
+@media (width >= 1024px) {
+  main .section.cards-news-container {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) 366px;
+    column-gap: 60px;
+    align-items: start;
+    max-width: var(--content-max-width);
+    margin-left: auto;
+    margin-right: auto;
+    text-align: left;
+  }
+
+  /* article content (default text, captioned images, tags, banner) → left column */
+  main .section.cards-news-container > div {
+    grid-column: 1;
+    max-width: none;
+    margin-left: 0;
+    margin-right: 0;
+  }
+
+  /* related list → right sidebar, spanning the full height of the article column */
+  main .section.cards-news-container > .cards-news-wrapper {
+    grid-column: 2;
+    grid-row: 1 / span 50;
+    align-self: start;
+    position: sticky;
+    top: 88px;
+    margin: 0;
+  }
+
+  /* widen + left-align the body text that the global rules otherwise center at 700px */
+  main .section.cards-news-container .default-content-wrapper p,
+  main .section.cards-news-container .default-content-wrapper h2,
+  main .section.cards-news-container .default-content-wrapper h3 {
+    max-width: none;
+    margin-left: 0;
+    margin-right: 0;
+    padding: 0;
+    text-align: left;
+  }
+
+  /* let the per-block wrappers fill the left column instead of their own 800px cap */
+  main .section.cards-news-container .article-image,
+  main .section.cards-news-container .tags-hashtag,
+  main .section.cards-news-container .banner-newsroom {
+    max-width: none;
+    margin-left: 0;
+    margin-right: 0;
+  }
+
+  /* sidebar cards stay a single vertical column */
+  main .section.cards-news-container .cards-news > ul {
+    grid-template-columns: 1fr;
+    margin: 0;
+  }
+}

@@ -103,6 +103,79 @@
           "defaultContent": [".st-semi-text-block:nth-of-type(18)"]
         }
       ]
+    },
+    {
+      "name": "news-article",
+      "urls": [
+        "https://semiconductor.samsung.com/kr/news-events/news/samsung-electronics-begins-shipment-of-industry-first-hbm4e-samples/"
+      ],
+      "representativeUrl": "https://semiconductor.samsung.com/kr/news-events/news/samsung-electronics-begins-shipment-of-industry-first-hbm4e-samples/",
+      "coverageGaps": [],
+      "description": "Samsung Semiconductor news article page: eyebrow category, title, publish date, social-share buttons, rich-text body with inline images and captions, hashtags, newsroom CTA banner, and a related-content grid of article cards.",
+      "blocks": [
+        {
+          "name": "article-header",
+          "instances": ["section.AR02_article-header__header"]
+        },
+        {
+          "name": "article-image",
+          "instances": [".st-semi-article-detail_image-desktop:has(.st-semi-article-detail_image-caption)"]
+        },
+        {
+          "name": "tags-hashtag",
+          "instances": [".AR02_article-detail-tag"]
+        },
+        {
+          "name": "banner-newsroom",
+          "instances": [".AR02_article-detail-semiconstory-banner"]
+        },
+        {
+          "name": "cards-news",
+          "instances": [".ar-semi-related-content"]
+        }
+      ],
+      "sections": [
+        {
+          "id": "s1",
+          "name": "Article Header",
+          "selector": "section.AR02_article-header__header",
+          "style": null,
+          "blocks": ["article-header"],
+          "defaultContent": []
+        },
+        {
+          "id": "s2",
+          "name": "Article Body",
+          "selector": ".AR02_article-detail .st-semi-article-detail_text-cont.rich-text",
+          "style": null,
+          "blocks": ["article-image"],
+          "defaultContent": [".AR02_article-detail .st-semi-article-detail_text-cont.rich-text"]
+        },
+        {
+          "id": "s3",
+          "name": "Hashtags",
+          "selector": ".AR02_article-detail-tag",
+          "style": null,
+          "blocks": ["tags-hashtag"],
+          "defaultContent": []
+        },
+        {
+          "id": "s4",
+          "name": "Newsroom CTA Banner",
+          "selector": ".AR02_article-detail-semiconstory-banner",
+          "style": "accent",
+          "blocks": ["banner-newsroom"],
+          "defaultContent": []
+        },
+        {
+          "id": "s5",
+          "name": "Related Content",
+          "selector": ".ar-semi-related-content",
+          "style": null,
+          "blocks": ["cards-news"],
+          "defaultContent": []
+        }
+      ]
     }
   ]
 }

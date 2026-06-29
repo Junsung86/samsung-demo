@@ -1,0 +1,38 @@
+{
+  "variantName": "banner-newsroom",
+  "baseBlock": "banner",
+  "version": "1.0.0",
+  "created": "2026-06-28T16:52:00.000Z",
+  "sourceContext": {
+    "originUrl": "https://semiconductor.samsung.com/kr/news-events/news/samsung-electronics-begins-shipment-of-industry-first-hbm4e-samples/",
+    "originPage": "Samsung Semiconductor news article page",
+    "blockPosition": "bottom"
+  },
+  "visualCharacteristics": {
+    "colorScheme": "accent",
+    "density": "spacious",
+    "purpose": "cta-banner",
+    "imagePattern": "noimg"
+  },
+  "contentPattern": {
+    "structure": "heading + paragraph (text) + single CTA link",
+    "buttonCount": 1,
+    "imageCount": 0
+  },
+  "reuseGuidance": {
+    "suitableFor": [
+      "newsroom / external-site promo banners with a single CTA",
+      "end-of-article cross-promotion banners",
+      "accent-colored call-to-action bands"
+    ],
+    "notSuitableFor": [
+      "full-bleed image hero sections (use hero-product)",
+      "multi-link or card-based promo sections"
+    ]
+  },
+  "usage": {
+    "pagesUsing": ["/kr/news-events/news/samsung-electronics-begins-shipment-of-industry-first-hbm4e-samples/index"],
+    "reuseCount": 1,
+    "lastUsed": "2026-06-28T16:52:00.000Z"
+  }
+}

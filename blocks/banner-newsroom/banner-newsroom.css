@@ -1,0 +1,91 @@
+/* Block: banner-newsroom
+ * Newsroom CTA banner migrated from semiconductor.samsung.com/kr/news-events/news.
+ * Dark photographic banner (laptop/keyboard hero) with white heading + paragraph
+ * on the left and a white pill CTA (with an outlink arrow) on the right.
+ */
+
+.banner-newsroom {
+  font-family: "Samsung One KR", "Samsung One", sans-serif;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  align-items: flex-start;
+  justify-content: space-between;
+  max-width: 800px;
+  min-height: 220px;
+  margin: 40px auto;
+  padding: 32px;
+  border-radius: 20px;
+  overflow: hidden;
+  background-color: #1b1b1b;
+  background-image: url('icons/banner-bg.png');
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  color: #fff;
+}
+
+.banner-newsroom .banner-newsroom-text * {
+  margin: 0;
+  max-width: none;
+  text-align: left;
+  color: #fff;
+}
+
+.banner-newsroom .banner-newsroom-text > :first-child {
+  margin: 0 0 8px;
+  font-size: 24px;
+  font-weight: 700;
+  line-height: 1.3;
+}
+
+.banner-newsroom .banner-newsroom-text > :nth-child(2) {
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 1.5;
+}
+
+.banner-newsroom .banner-newsroom-cta {
+  margin: 0;
+}
+
+.banner-newsroom .banner-newsroom-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  height: 40px;
+  padding: 0 20px;
+  border: 0;
+  border-radius: 20px;
+  background-color: #fff;
+  color: #000;
+  font-size: 14px;
+  font-weight: 700;
+  text-decoration: none;
+  transition: background-color 0.2s;
+}
+
+.banner-newsroom .banner-newsroom-link::after {
+  content: "";
+  width: 16px;
+  height: 16px;
+  background-image: url('icons/outlink.svg');
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 100%;
+}
+
+.banner-newsroom .banner-newsroom-link:hover {
+  background-color: #eee;
+  color: #000;
+  text-decoration: none;
+}
+
+@media (width >= 900px) {
+  .banner-newsroom {
+    flex-direction: row;
+    align-items: center;
+    padding: 40px;
+  }
+}
