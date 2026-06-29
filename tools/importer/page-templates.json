@@ -14,19 +14,28 @@
       "blocks": [
         {
           "name": "hero-product",
-          "instances": [".st-semi-hero-carousel"]
+          "instances": [
+            ".st-semi-hero-carousel"
+          ]
         },
         {
           "name": "columns-spec",
-          "instances": [".st-semi-feature-spec"]
+          "instances": [
+            ".st-semi-feature-spec"
+          ]
         },
         {
           "name": "accordion-faq",
-          "instances": [".st-semi-accordion-list"]
+          "instances": [
+            ".st-semi-accordion-list"
+          ]
         },
         {
           "name": "cards-content",
-          "instances": [".st-semi-4-column", ".cm-semi-related-content-all"]
+          "instances": [
+            ".st-semi-4-column",
+            ".cm-semi-related-content-all"
+          ]
         }
       ],
       "sections": [
@@ -35,7 +44,9 @@
           "name": "Hero",
           "selector": ".st-semi-hero-carousel",
           "style": null,
-          "blocks": ["hero-product"],
+          "blocks": [
+            "hero-product"
+          ],
           "defaultContent": []
         },
         {
@@ -44,14 +55,18 @@
           "selector": ".st-semi-text-block:nth-of-type(3)",
           "style": null,
           "blocks": [],
-          "defaultContent": [".st-semi-text-block:nth-of-type(3)"]
+          "defaultContent": [
+            ".st-semi-text-block:nth-of-type(3)"
+          ]
         },
         {
           "id": "s3",
           "name": "HBM4 Spec",
           "selector": ".st-semi-feature-spec:nth-of-type(5)",
           "style": "light",
-          "blocks": ["columns-spec"],
+          "blocks": [
+            "columns-spec"
+          ],
           "defaultContent": []
         },
         {
@@ -59,7 +74,9 @@
           "name": "HBM3E Spec",
           "selector": ".st-semi-feature-spec:nth-of-type(7)",
           "style": "light",
-          "blocks": ["columns-spec"],
+          "blocks": [
+            "columns-spec"
+          ],
           "defaultContent": []
         },
         {
@@ -67,7 +84,9 @@
           "name": "HBM3 Spec",
           "selector": ".st-semi-feature-spec:nth-of-type(9)",
           "style": "light",
-          "blocks": ["columns-spec"],
+          "blocks": [
+            "columns-spec"
+          ],
           "defaultContent": []
         },
         {
@@ -75,7 +94,9 @@
           "name": "FAQ",
           "selector": ".st-semi-accordion-list",
           "style": "light",
-          "blocks": ["accordion-faq"],
+          "blocks": [
+            "accordion-faq"
+          ],
           "defaultContent": []
         },
         {
@@ -83,7 +104,9 @@
           "name": "Applications",
           "selector": ".st-semi-4-column",
           "style": "light",
-          "blocks": ["cards-content"],
+          "blocks": [
+            "cards-content"
+          ],
           "defaultContent": []
         },
         {
@@ -91,7 +114,9 @@
           "name": "Related Content",
           "selector": ".cm-semi-related-content-all",
           "style": "light",
-          "blocks": ["cards-content"],
+          "blocks": [
+            "cards-content"
+          ],
           "defaultContent": []
         },
         {
@@ -100,14 +125,17 @@
           "selector": ".st-semi-text-block:nth-of-type(18)",
           "style": null,
           "blocks": [],
-          "defaultContent": [".st-semi-text-block:nth-of-type(18)"]
+          "defaultContent": [
+            ".st-semi-text-block:nth-of-type(18)"
+          ]
         }
       ]
     },
     {
       "name": "news-article",
       "urls": [
-        "https://semiconductor.samsung.com/kr/news-events/news/samsung-electronics-begins-shipment-of-industry-first-hbm4e-samples/"
+        "https://semiconductor.samsung.com/kr/news-events/news/samsung-electronics-begins-shipment-of-industry-first-hbm4e-samples/",
+        "https://semiconductor.samsung.com/kr/news-events/news/samsung-ships-industry-first-commercial-hbm4-with-ultimate-performance-for-ai-computing/"
       ],
       "representativeUrl": "https://semiconductor.samsung.com/kr/news-events/news/samsung-electronics-begins-shipment-of-industry-first-hbm4e-samples/",
       "coverageGaps": [],
@@ -115,23 +143,33 @@
       "blocks": [
         {
           "name": "article-header",
-          "instances": ["section.AR02_article-header__header"]
+          "instances": [
+            "section.AR02_article-header__header"
+          ]
         },
         {
           "name": "article-image",
-          "instances": [".st-semi-article-detail_image-desktop:has(.st-semi-article-detail_image-caption)"]
+          "instances": [
+            ".st-semi-article-detail_image-desktop:has(.st-semi-article-detail_image-caption)"
+          ]
         },
         {
           "name": "tags-hashtag",
-          "instances": [".AR02_article-detail-tag"]
+          "instances": [
+            ".AR02_article-detail-tag"
+          ]
         },
         {
           "name": "banner-newsroom",
-          "instances": [".AR02_article-detail-semiconstory-banner"]
+          "instances": [
+            ".AR02_article-detail-semiconstory-banner"
+          ]
         },
         {
           "name": "cards-news",
-          "instances": [".ar-semi-related-content"]
+          "instances": [
+            ".ar-semi-related-content"
+          ]
         }
       ],
       "sections": [
@@ -140,7 +178,9 @@
           "name": "Article Header",
           "selector": "section.AR02_article-header__header",
           "style": null,
-          "blocks": ["article-header"],
+          "blocks": [
+            "article-header"
+          ],
           "defaultContent": []
         },
         {
@@ -148,15 +188,21 @@
           "name": "Article Body",
           "selector": ".AR02_article-detail .st-semi-article-detail_text-cont.rich-text",
           "style": null,
-          "blocks": ["article-image"],
-          "defaultContent": [".AR02_article-detail .st-semi-article-detail_text-cont.rich-text"]
+          "blocks": [
+            "article-image"
+          ],
+          "defaultContent": [
+            ".AR02_article-detail .st-semi-article-detail_text-cont.rich-text"
+          ]
         },
         {
           "id": "s3",
           "name": "Hashtags",
           "selector": ".AR02_article-detail-tag",
           "style": null,
-          "blocks": ["tags-hashtag"],
+          "blocks": [
+            "tags-hashtag"
+          ],
           "defaultContent": []
         },
         {
@@ -164,7 +210,9 @@
           "name": "Newsroom CTA Banner",
           "selector": ".AR02_article-detail-semiconstory-banner",
           "style": "accent",
-          "blocks": ["banner-newsroom"],
+          "blocks": [
+            "banner-newsroom"
+          ],
           "defaultContent": []
         },
         {
@@ -172,7 +220,9 @@
           "name": "Related Content",
           "selector": ".ar-semi-related-content",
           "style": null,
-          "blocks": ["cards-news"],
+          "blocks": [
+            "cards-news"
+          ],
           "defaultContent": []
         }
       ]

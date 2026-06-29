@@ -1,0 +1,17 @@
+{
+  "status": "success",
+  "url": "https://semiconductor.samsung.com/kr/news-events/news/samsung-ships-industry-first-commercial-hbm4-with-ultimate-performance-for-ai-computing/",
+  "path": "kr/news-events/news/samsung-ships-industry-first-commercial-hbm4-with-ultimate-performance-for-ai-computing",
+  "timestamp": "2026-06-29T02:39:45.473Z",
+  "title": "삼성전자, 세계 최초 업계 최고 성능의 HBM4 양산 출하 | 삼성반도체",
+  "template": "news-article",
+  "blocks": [
+    "article-header",
+    "article-image",
+    "article-image",
+    "tags-hashtag",
+    "tags-hashtag",
+    "banner-newsroom",
+    "cards-news"
+  ]
+}
