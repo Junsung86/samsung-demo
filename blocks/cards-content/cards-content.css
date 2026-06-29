@@ -200,6 +200,11 @@
     min-width: 0;
     padding-top: 0;
   }
+
+  /* Hide the hashtag chips row on mobile — show only the category + title. */
+  .cards-content > ul > li:has(> .cards-content-card-body > p:first-child) .cards-content-card-body > p:last-child {
+    display: none;
+  }
 }
 
 /* =====================================================================
