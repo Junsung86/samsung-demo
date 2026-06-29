@@ -250,6 +250,29 @@ main > .section + .section {
   main > .section + .section {
     margin-top: 64px;
   }
+
+  /* Mobile side gutter: the source insets content ~24px from the screen edges.
+     Sections are full-width (margin:0) and block CSS strips the default
+     content padding, so add the gutter at the section level. The full-bleed
+     hero opts out (it spans edge-to-edge by design). */
+  main > .section:not(.hero-product-container) {
+    padding-left: 24px;
+    padding-right: 24px;
+  }
+
+  /* The section now provides the gutter — drop the default-content inline
+     padding so text isn't double-indented. */
+  main > .section:not(.hero-product-container) h2,
+  main > .section:not(.hero-product-container) h3,
+  main > .section:not(.hero-product-container) p {
+    padding-left: 0;
+    padding-right: 0;
+  }
+
+  main .default-content-wrapper:has(> p a[href*="global-network"]) {
+    padding-left: 0;
+    padding-right: 0;
+  }
 }
 
 /* Breadcrumb (홈 / DRAM / HBM) — preserved from source, rendered near the
