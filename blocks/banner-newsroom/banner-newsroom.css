@@ -1,7 +1,8 @@
 /* Block: banner-newsroom
  * Newsroom CTA banner migrated from semiconductor.samsung.com/kr/news-events/news.
- * Dark photographic banner (laptop/keyboard hero) with white heading + paragraph
- * on the left and a white pill CTA (with an outlink arrow) on the right.
+ * Dark photographic banner (laptop/keyboard hero): white heading + paragraph at
+ * the top and a white pill CTA (with an outlink arrow) anchored at the bottom.
+ * The source keeps this vertical (text top / button bottom) at every width.
  */
 
 .banner-newsroom {
@@ -12,9 +13,8 @@
   gap: 24px;
   align-items: flex-start;
   justify-content: space-between;
-  max-width: 800px;
   min-height: 220px;
-  margin: 40px auto;
+  margin: 40px 0;
   padding: 32px;
   border-radius: 20px;
   overflow: hidden;
@@ -80,12 +80,4 @@
   background-color: #eee;
   color: #000;
   text-decoration: none;
-}
-
-@media (width >= 900px) {
-  .banner-newsroom {
-    flex-direction: row;
-    align-items: center;
-    padding: 40px;
-  }
 }
