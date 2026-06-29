@@ -1,0 +1,15 @@
+{
+  "status": "success",
+  "url": "https://semiconductor.samsung.com/kr/news-events/tech-blog/a-peek-into-ssd-virtualization/",
+  "path": "kr/news-events/tech-blog/a-peek-into-ssd-virtualization",
+  "timestamp": "2026-06-29T02:43:22.977Z",
+  "title": "SSD 가상화 기술이 바꾸는 차세대 시스템 아키텍처 | 삼성반도체",
+  "template": "news-article",
+  "blocks": [
+    "article-header",
+    "article-image",
+    "tags-hashtag",
+    "tags-hashtag",
+    "cards-news"
+  ]
+}
