@@ -1,0 +1,5 @@
+/* authoring-only block: raw JSON-LD text must never render visibly, even
+   before this block's own JS (which removes it) has run */
+.json-ld {
+  display: none;
+}

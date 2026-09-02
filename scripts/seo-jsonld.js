@@ -2,12 +2,15 @@
  * Machine-readable page metadata for AI agents / search engines.
  *
  * Injects schema.org JSON-LD into <head> — invisible to users, but readable by
- * crawlers and LLM agents. Two parts, both sourced from existing page data so
- * authors don't maintain a parallel copy:
+ * crawlers and LLM agents. Sourced from existing page data so authors don't
+ * maintain a parallel copy, unless explicitly overridden:
  *   - description: from page metadata (`summary` if present, else `description`)
  *   - FAQ: built from the page's existing FAQ block(s) (.accordion-faq)
+ *   - authored: raw JSON-LD objects from a `json-ld` block, when present.
+ *     An authored object's `@type` takes precedence over the matching
+ *     auto-generated one (e.g. an authored FAQPage suppresses the auto FAQ).
  *
- * No visible DOM is added; only a <script type="application/ld+json"> tag.
+ * No visible DOM is added; only <script type="application/ld+json"> tags.
  */
 
 import { getMetadata } from './aem.js';
@@ -15,6 +18,39 @@ import { getMetadata } from './aem.js';
 /** Collapse whitespace and trim; FAQ answers may contain <br> and newlines. */
 function clean(text) {
   return (text || '').replace(/\s+/g, ' ').trim();
+}
+
+/**
+ * Authors editing in Word/Google Docs get their straight quotes
+ * autocorrected to curly ones, which breaks JSON.parse.
+ */
+function straightenQuotes(text) {
+  return text.replace(/[“”]/g, '"').replace(/[‘’]/g, "'");
+}
+
+/**
+ * Extract authored JSON-LD objects from `json-ld` block(s). Each row holds
+ * one JSON object (or an array of objects) as raw text. Invalid rows are
+ * skipped so one author typo doesn't break the whole page.
+ * @param {Document} doc
+ * @returns {Array<object>}
+ */
+function extractAuthoredJsonLd(doc) {
+  const entries = [];
+  doc.querySelectorAll('.json-ld').forEach((block) => {
+    block.querySelectorAll(':scope > div').forEach((row) => {
+      const text = straightenQuotes(clean(row.textContent));
+      if (!text) return;
+      try {
+        const parsed = JSON.parse(text);
+        entries.push(...(Array.isArray(parsed) ? parsed : [parsed]));
+      } catch (error) {
+        // eslint-disable-next-line no-console
+        console.warn('Skipping invalid authored JSON-LD row:', text, error);
+      }
+    });
+  });
+  return entries;
 }
 
 /**
@@ -64,10 +100,16 @@ function addJsonLd(data) {
  * @param {Document} [doc=document]
  */
 export default function injectAgentMetadata(doc = document) {
+  // Authors can override or extend the auto-generated schema via a `json-ld`
+  // block; whatever `@type`s they author take precedence below.
+  const authored = extractAuthoredJsonLd(doc);
+  const authoredTypes = new Set(authored.map((entry) => entry['@type']));
+  authored.forEach(addJsonLd);
+
   // Summary → schema.org Article-style description (authors set `summary` meta,
   // falling back to the standard `description`).
   const summary = clean(getMetadata('summary', doc) || getMetadata('description', doc));
-  if (summary) {
+  if (summary && !authoredTypes.has('WebPage')) {
     addJsonLd({
       '@context': 'https://schema.org',
       '@type': 'WebPage',
@@ -80,7 +122,7 @@ export default function injectAgentMetadata(doc = document) {
 
   // FAQ → schema.org FAQPage, reusing the existing on-page FAQ block.
   const faqs = extractFaqs(doc);
-  if (faqs.length) {
+  if (faqs.length && !authoredTypes.has('FAQPage')) {
     addJsonLd({
       '@context': 'https://schema.org',
       '@type': 'FAQPage',

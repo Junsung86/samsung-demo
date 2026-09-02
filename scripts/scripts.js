@@ -302,6 +302,13 @@ async function loadEager(doc) {
     await loadSection(main.querySelector('.section'), waitForFirstImage);
   }
 
+  // Inject machine-readable metadata (summary + FAQ JSON-LD) for AI agents as
+  // early as possible, so JS-rendering crawlers with limited render budgets
+  // (e.g. Googlebot) are more likely to capture it. extractFaqs() already
+  // handles the pre-decoration FAQ block shape, so this works before
+  // decorateBlocks() has run any block's own JS.
+  injectAgentMetadata(doc);
+
   try {
     /* if desktop (proxy for fast connection) or fonts already loaded, load fonts.css */
     if (window.innerWidth >= 900 || sessionStorage.getItem('fonts-loaded')) {
@@ -321,10 +328,6 @@ async function loadLazy(doc) {
 
   const main = doc.querySelector('main');
   await loadSections(main);
-
-  // Inject machine-readable metadata (summary + FAQ JSON-LD) for AI agents.
-  // Runs after sections decorate so FAQ blocks are present; adds no visible DOM.
-  injectAgentMetadata(doc);
 
   const { hash } = window.location;
   const element = hash ? doc.getElementById(hash.substring(1)) : false;
